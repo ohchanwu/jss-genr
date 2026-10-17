@@ -19,6 +19,8 @@ def count(text: str) -> dict:
         "공백포함": len(text),
         "공백제외": len(re.sub(r"\s", "", text)),
         "bytes(UTF-8)": len(text.encode("utf-8")),
+        # Browsers submit line breaks as CRLF, so some forms count each as 2.
+        "줄바꿈2자": len(text) + text.count("\n"),
     }
 
 
@@ -46,7 +48,8 @@ def main() -> None:
     raw = sys.stdin.read() if a.file == "-" else open(a.file, encoding="utf-8").read()
     for title, body in sections(raw):
         c = count(body)
-        line = f"{title}: 공백포함 {c['공백포함']} / 공백제외 {c['공백제외']} / {c['bytes(UTF-8)']} bytes"
+        line = (f"{title}: 공백포함 {c['공백포함']} (줄바꿈 2자 시 {c['줄바꿈2자']}) / "
+                f"공백제외 {c['공백제외']} / {c['bytes(UTF-8)']} bytes")
         if a.limit:
             line += f"  ({c['공백포함'] / a.limit:.0%} of {a.limit})"
         print(line)
