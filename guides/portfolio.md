@@ -1,8 +1,10 @@
 # Portfolio site guide
 
-The site lives in a separate repo; the path is in `profile/assets.md`. That
-repo's own `CLAUDE.md` governs code and process there: local commits on
-`main`, never push, no deploys.
+The site lives in a separate repo; the path is in `profile/assets.md`. It's a
+static site on GitHub Pages, and pushing `main` deploys it. That repo's own
+`AGENTS.md` governs code, QA, and process there: feature branches, a QA matrix
+(desktop and mobile, both themes, both languages) on the local preview, and no
+push unless the owner asks.
 
 ## Copy (site text)
 - Use Workflow A's pattern: the owner drafts in English, and the agent produces

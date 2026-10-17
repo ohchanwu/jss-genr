@@ -113,7 +113,7 @@ Content rules are in `guides/resume.md`. After the PDFs change, run
 
 ## Workflow C: portfolio site (separate repo)
 
-The path and rules are in `profile/assets.md`. Read that repo's `CLAUDE.md`
+The path and rules are in `profile/assets.md`. Read that repo's `AGENTS.md`
 first; its rules win inside that repo. Content rules are in `guides/portfolio.md`.
 The site is public: apply the publication filter in that guide.
 
