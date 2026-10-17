@@ -22,10 +22,10 @@
   --sp-h1: 30px;              /* name (h1) -> summary */
   --sp-section: 62px;         /* above a major section heading (h2) */
   --sp-section-body: 30px;    /* section heading -> its first content */
-  --sp-entry: 52px;           /* between project entries */
+  --sp-entry: 64px;           /* between project entries */
   --sp-entry-edu: 40px;       /* between education entries */
   --sp-line: 16px;            /* adjacent lines inside one entry (company / role / paragraph) */
-  --sp-subhead: 40px;         /* above an h4 sub-heading */
+  --sp-subhead: 54px;         /* above an h4 sub-heading */
   --sp-subhead-body: 7px;     /* h4 sub-heading -> its paragraph (hugs it) */
   --sp-list-before: 15px;     /* before a bullet list */
   --sp-list-item: 6px;        /* between bullets */
@@ -386,9 +386,9 @@ a {
 <section class="entry">
 <div class="entry-row entry-company"><div class="entry-main"><a href="https://chaphysicaltherapy.com/">Cha Physical Therapy</a></div><div class="entry-side">웹앱 (미국 NYC 물리치료 클리닉)</div></div>
 <div class="entry-row entry-role"><div class="entry-main">Infra: AWS, Docker, Cloudflare | BE: Go, MySQL | FE: JS, CSS, HTML</div><div class="entry-side"><em>2025.08 - 현재</em></div></div>
-<p>미국 물리치료 클리닉과 프리랜서 계약을 맺고, 웹 서비스 전체를 <strong>설계, 구축, 배포, 운영하는 단독 개발자</strong>로 일하고 있습니다.</p>
+<p>미국 물리치료 클리닉과 프리랜서 계약을 맺고, 웹 서비스 전체를 혼자 <strong>설계, 구축, 배포, 운영</strong>하고 있습니다.</p>
 <h4>Squarespace → AWS 마이그레이션</h4>
-<p>Squarespace는 UI 커스터마이징에 제약이 있었고, 삽입한 CSS/JS 코드 때문에 페이지 응답이 느렸습니다. 설명보다 직접 보여 주는 것이 낫다고 판단해 <strong>작동하는 GitHub Pages 데모</strong>로 마케팅팀을 설득했고, 이후 Go와 Docker로 사이트를 재구축했습니다.</p>
+<p>Squarespace는 UI 커스터마이징에 제약이 있었고, 삽입한 CSS/JS 코드 때문에 페이지 응답이 느렸습니다. 설명보다 직접 보여 주는 편이 낫다고 판단해 <strong>작동하는 GitHub Pages 데모</strong>로 마케팅팀을 설득한 뒤, Go와 Docker로 재구축했습니다.</p>
 <h4>비개발자를 위한 프론트엔드 배포 체계</h4>
 <p>비개발자 담당자가 백엔드와 클라우드 접근 없이 AI 에이전트로 사이트를 직접 수정하고 배포할 수 있어야 했습니다. 다만 Go 서버가 처리하던 리다이렉트와 분석, 폼 폴백은 그대로 지켜야 했습니다. 그래서 사이트를 별도 저장소로 분리해 <strong>Cloudflare Worker 뒤의 AWS Amplify</strong>로 배포하고, 라우트와 폼, 링크 계약을 고정해 <strong>Python 검사, 브라우저 스모크 테스트, CI 게이트, Gitleaks</strong>로 강제했습니다. 지금은 PR과 Amplify 미리보기로 변경이 배포되며, 클리닉 직원이 이 방식으로 폼 수정을 직접 배포했습니다.</p>
 <h4>장애 복구 및 하드닝</h4>
@@ -460,9 +460,9 @@ a {
 </ul>
 </section>
 <section class="entry">
-<div class="entry-row entry-company"><div class="entry-main">LSAT</div><div class="entry-side"><em>173 / 180 (상위 1%)</em></div></div>
+<div class="entry-row entry-company"><div class="entry-main">LSAT</div><div class="entry-side"><em>173 / 180</em></div></div>
 <ul>
-<li>영어 지문 독해와 논리적 추론을 평가하는 미국 법대 입학시험</li>
+<li>상위 1%. 영어 지문 독해와 논리적 추론을 평가하는 미국 법대 입학시험</li>
 </ul>
 </section>
 <h2>군복무</h2>

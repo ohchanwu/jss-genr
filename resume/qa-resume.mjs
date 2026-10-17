@@ -77,7 +77,7 @@ for (const rel of targets.length ? targets : RESUMES) {
       // Per-block wrapped line counts, and orphans (a last line of one or two words).
       const blocks = [];
       const warnings = [];
-      for (const el of pageEl.querySelectorAll(".summary, .label-body, li, p.ss-desc")) {
+      for (const el of pageEl.querySelectorAll(".summary, .label-body, li, p.ss-desc, section.entry > p:not(.labeled-line)")) {
         // Measure text nodes only; element boxes (e.g. <strong>) would double-count width.
         const tops = new Map();
         const textWalker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
