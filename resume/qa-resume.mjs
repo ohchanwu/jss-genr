@@ -78,13 +78,17 @@ for (const rel of targets.length ? targets : RESUMES) {
       const blocks = [];
       const warnings = [];
       for (const el of pageEl.querySelectorAll(".summary, .label-body, li, p.ss-desc")) {
-        const range = document.createRange();
-        range.selectNodeContents(el);
+        // Measure text nodes only; element boxes (e.g. <strong>) would double-count width.
         const tops = new Map();
-        for (const r of range.getClientRects()) {
-          if (!r.width) continue;
-          const key = Math.round(r.top / 4);
-          tops.set(key, (tops.get(key) ?? 0) + r.width);
+        const textWalker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+        const range = document.createRange();
+        while (textWalker.nextNode()) {
+          range.selectNodeContents(textWalker.currentNode);
+          for (const r of range.getClientRects()) {
+            if (!r.width) continue;
+            const key = Math.round(r.top / 4);
+            tops.set(key, (tops.get(key) ?? 0) + r.width);
+          }
         }
         const lines = tops.size;
         const text = el.textContent.replace(/\s+/g, " ").trim();

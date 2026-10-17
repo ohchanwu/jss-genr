@@ -437,7 +437,7 @@ a {
 <h4>Outage Recovery and Hardening (<a href="https://github.com/ohchanwu/cha-pt-postmortems/blob/main/2026-04-17/2026-04-17.md">postmortem</a>)</h4>
 <p class="labeled-line label-문제"><span class="line-label">Problem</span><span class="label-body">In Apr 2026 the site went down for 2h 54m while EC2 status checks kept passing</span></p>
 <p class="labeled-line label-분석"><span class="line-label">Analysis</span><span class="label-body">Ruled out OOM via the systemd journal; CloudWatch showed the <strong>gp3 volume pinned at its 125 MiB/s ceiling</strong> by unindexed admin-dashboard queries on a shared root volume</span></p>
-<p class="labeled-line label-해결"><span class="line-label">Solution</span><span class="label-body">Restored with no customer data loss; added <strong>CloudWatch alarms, indexes, query time limits, and log rotation</strong></span></p>
+<p class="labeled-line label-해결"><span class="line-label">Solution</span><span class="label-body">Restored on a fresh instance with no customer data loss, then added <strong>CloudWatch alarms, EXPLAIN-driven indexes, query time limits, and log rotation</strong></span></p>
 <p class="labeled-line label-교훈"><span class="line-label">Lesson</span><span class="label-body">Cloud limits fail silently, so monitor them explicitly; internal tools are production too</span></p>
 </section>
 <section class="entry">
