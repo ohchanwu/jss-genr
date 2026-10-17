@@ -22,12 +22,12 @@
   --sp-h1: 26px;              /* name (h1) -> summary */
   --sp-section: 44px;         /* above a major section heading (h2) */
   --sp-section-body: 22px;    /* section heading -> its first content */
-  --sp-entry: 70px;           /* between project entries */
+  --sp-entry: 40px;           /* between project entries */
   --sp-entry-edu: 28px;       /* between education entries */
   --sp-role: 14px;            /* company line -> role line */
   --sp-roleline: 20px;        /* role line -> first labeled line */
   --sp-line: 9px;            /* between labeled lines */
-  --sp-subhead: 54px;         /* above an h4 sub-heading */
+  --sp-subhead: 38px;         /* above an h4 sub-heading */
   --sp-subhead-body: 8px;     /* h4 sub-heading -> its first labeled line (hugs it) */
   --sp-list-before: 14px;     /* before a bullet list */
   --sp-list-item: 5px;        /* between bullets */
@@ -426,25 +426,26 @@ a {
 <section class="entry">
 <div class="entry-row entry-company"><div class="entry-main"><a href="https://chaphysicaltherapy.com/">Cha Physical Therapy</a></div><div class="entry-side">Web app for an NYC physical therapy clinic</div></div>
 <div class="entry-row entry-role"><div class="entry-main"><strong>Infra: AWS, Docker, Cloudflare | BE: Go, MySQL | FE: JS, CSS, HTML</strong></div><div class="entry-side"><em>Aug 2025 - Present</em></div></div>
-<p class="labeled-line label-운영"><span class="line-label">Role</span><span class="label-body">Freelance contract. <strong>Sole developer who designed, built, deployed, and operates the service</strong>: Cloudflare Worker, Amplify frontend, and a Go + MySQL origin on EC2 (Docker, Caddy)</span></p>
+<p class="labeled-line label-운영"><span class="line-label">Role</span><span class="label-body">Freelance contract. <strong>Sole developer who designed, built, deployed, and operates the service</strong></span></p>
 <h4>Squarespace → AWS Migration</h4>
 <p class="labeled-line label-문제"><span class="line-label">Problem</span><span class="label-body">Squarespace limited UI customization, and injected custom CSS/JS slowed page responses</span></p>
-<p class="labeled-line label-분석"><span class="line-label">Analysis</span><span class="label-body">A working demo would persuade the marketing team better than explanation</span></p>
-<p class="labeled-line label-해결"><span class="line-label">Solution</span><span class="label-body">Won the move to AWS with a <strong>GitHub Pages demo</strong>, then rebuilt it in Go with Docker</span></p>
-<p class="labeled-line label-교훈"><span class="line-label">Lesson</span><span class="label-body">A <strong>working prototype</strong> is the most persuasive argument for a migration</span></p>
+<p class="labeled-line label-해결"><span class="line-label">Solution</span><span class="label-body">Won the move to AWS with a <strong>working GitHub Pages demo</strong>, then rebuilt the site in Go with Docker</span></p>
+<h4>Self-Serve Frontend Publishing</h4>
+<p class="labeled-line label-문제"><span class="line-label">Problem</span><span class="label-body">A non-technical owner needed to publish with AI agents, with no backend or cloud access, while keeping Go's redirects, analytics, and form fallbacks</span></p>
+<p class="labeled-line label-해결"><span class="line-label">Solution</span><span class="label-body">Split the site into its own repo on <strong>AWS Amplify behind a Cloudflare Worker</strong>; froze route, form, and link contracts, enforced by <strong>Python checks, a browser smoke test, a CI gate, and Gitleaks</strong></span></p>
+<p class="labeled-line label-결과"><span class="line-label">Result</span><span class="label-body">Changes ship via PRs with Amplify previews; a clinic staffer has shipped a form fix this way</span></p>
 <h4>Outage Recovery and Hardening (<a href="https://github.com/ohchanwu/cha-pt-postmortems/blob/main/2026-04-17/2026-04-17.md">postmortem</a>)</h4>
 <p class="labeled-line label-문제"><span class="line-label">Problem</span><span class="label-body">In Apr 2026 the site went down for 2h 54m while EC2 status checks kept passing</span></p>
 <p class="labeled-line label-분석"><span class="line-label">Analysis</span><span class="label-body">Ruled out OOM via the systemd journal; CloudWatch showed the <strong>gp3 volume pinned at its 125 MiB/s ceiling</strong> by unindexed admin-dashboard queries on a shared root volume</span></p>
-<p class="labeled-line label-해결"><span class="line-label">Solution</span><span class="label-body">Restored on a fresh instance with no customer data loss, then added <strong>CloudWatch alarms, EXPLAIN-driven indexes, query time limits, and log rotation</strong></span></p>
+<p class="labeled-line label-해결"><span class="line-label">Solution</span><span class="label-body">Restored with no customer data loss; added <strong>CloudWatch alarms, indexes, query time limits, and log rotation</strong></span></p>
 <p class="labeled-line label-교훈"><span class="line-label">Lesson</span><span class="label-body">Cloud limits fail silently, so monitor them explicitly; internal tools are production too</span></p>
 </section>
 <section class="entry">
-<div class="entry-row entry-company"><div class="entry-main"><a href="https://github.com/ohchanwu/jobcron">jobcron</a></div><div class="entry-side">Job-post briefing with AI fit scoring</div></div>
+<div class="entry-row entry-company"><div class="entry-main"><a href="https://github.com/ohchanwu/jobcron">Jobcron</a></div><div class="entry-side">Job-post briefing with AI fit scoring</div></div>
 <div class="entry-row entry-role"><div class="entry-main"><strong>Infra: AWS, Terraform, Docker, Cloudflare | BE: Go, PostgreSQL</strong></div><div class="entry-side"><em>May 2026 - Present</em></div></div>
 <p class="labeled-line label-목적"><span class="line-label">Goal</span><span class="label-body">One daily briefing of entry-level posts from Korean job boards, each with an <strong>explained fit score</strong></span></p>
-<p class="labeled-line label-구조"><span class="line-label">Infra</span><span class="label-body">Go binary on <strong>EC2 and private RDS, managed with Terraform</strong>; GoReleaser and GitHub Actions releases; a release ships only after an encrypted backup restores</span></p>
-<p class="labeled-line label-추론"><span class="line-label">AI</span><span class="label-body">Two-stage LLM scoring where <strong>every adjustment must quote the post</strong>, with capped deltas, a token budget, caching, and a deterministic fallback</span></p>
-<p class="labeled-line label-방식"><span class="line-label">Method</span><span class="label-body">Harness engineering: specs, implementation, and review gates across multiple AI agents</span></p>
+<p class="labeled-line label-구조"><span class="line-label">Infra</span><span class="label-body">Go on <strong>EC2 and private RDS via Terraform</strong>; releases gated on an encrypted backup restore; built via harness engineering with multiple AI agents</span></p>
+<p class="labeled-line label-추론"><span class="line-label">AI</span><span class="label-body">LLM scoring where <strong>every adjustment must quote the post</strong>; capped deltas, token budget, fallback</span></p>
 </section>
 </main>
 <main class="page project-page">
@@ -460,11 +461,11 @@ a {
 <section class="education">
 <section class="entry education-entry">
 <div class="entry-row entry-company"><div class="entry-main">Samsung Software &amp; AI Academy for Youth (SSAFY)</div><div class="entry-side"><em>Seoul · 16th cohort</em></div></div>
-<div class="entry-row entry-role"><div class="entry-main"><strong>Coding track - Java major class</strong></div><div class="entry-side"><em>Jul 2026 - Jun 2027</em></div></div>
+<div class="entry-row entry-role"><div class="entry-main"><strong>Coding track - Java major class</strong></div><div class="entry-side"><em>Jul 2026 - Present</em></div></div>
 <ul>
-<li>Ranked 1st in my class and 2nd across the non-major cohort, then moved up to the Java major class</li>
+<li>Ranked 1st in my class and 2nd across the non-major cohort on subject and monthly exams; passed a technical interview to move up to the Java major class</li>
 <li>Vice class president of the Java major class</li>
-<li>AI Challenge (Kaggle Korean VQA, 217 teams, team of 4): raised the team's score from 0.956 to 0.971 with logit scoring, debiasing, LoRA, and ensembling</li>
+<li>AI Challenge (Kaggle Korean VQA, 217 teams, team of 4): raised the team's score from 0.956 to 0.974 (1st in my class) with logit scoring, debiasing, LoRA, and ensembling</li>
 </ul>
 </section>
 <section class="entry education-entry">
@@ -488,7 +489,7 @@ a {
 <h2>Skills</h2>
 <section class="skills">
 <p>Languages: <span class="skill-pill">Go</span> <span class="skill-pill">Java</span> <span class="skill-pill">Python</span> <span class="skill-pill">JS</span></p>
-<p>Database: <span class="skill-pill">MySQL</span> <span class="skill-pill">PostgreSQL</span></p>
+<p>Database: <span class="skill-pill">MySQL</span> <span class="skill-pill">PostgreSQL</span> <span class="skill-pill">MongoDB</span></p>
 <p>Infra: <span class="skill-pill">AWS</span> <span class="skill-pill">Docker</span> <span class="skill-pill">Terraform</span> <span class="skill-pill">Cloudflare</span></p>
 <p>Tools: <span class="skill-pill">Git</span> <span class="skill-pill">GitHub Actions</span> <span class="skill-pill">Linux</span></p>
 </section>
