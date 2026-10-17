@@ -1,0 +1,9 @@
+# Personal data: never tracked (repo is public)
+profile/
+companies/
+
+# Browser automation artifacts
+.playwright-mcp/
+
+# OS / editor
+.DS_Store
