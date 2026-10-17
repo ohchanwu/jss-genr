@@ -1,9 +1,9 @@
 <!doctype html>
-<html>
+<html lang="ko">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <title>Resume KR (Narrative, no stats)</title>
+  <title>이력서 (서술형) - 오찬우</title>
   <style>
 :root {
   --ink: #101010;
@@ -19,13 +19,13 @@
   /* Main document column (largest -> smallest):
      section 78 > entry 64 > subhead 52 > section-body 30 > summary 26 > line 16 */
   --sp-header: 54px;          /* header-links bar -> name (h1) */
-  --sp-h1: 40px;              /* name (h1) -> summary */
-  --sp-section: 78px;         /* above a major section heading (h2) */
+  --sp-h1: 30px;              /* name (h1) -> summary */
+  --sp-section: 62px;         /* above a major section heading (h2) */
   --sp-section-body: 30px;    /* section heading -> its first content */
-  --sp-entry: 76px;           /* between project entries */
-  --sp-entry-edu: 50px;       /* between education entries */
+  --sp-entry: 52px;           /* between project entries */
+  --sp-entry-edu: 40px;       /* between education entries */
   --sp-line: 16px;            /* adjacent lines inside one entry (company / role / paragraph) */
-  --sp-subhead: 62px;         /* above an h4 sub-heading */
+  --sp-subhead: 40px;         /* above an h4 sub-heading */
   --sp-subhead-body: 7px;     /* h4 sub-heading -> its paragraph (hugs it) */
   --sp-list-before: 15px;     /* before a bullet list */
   --sp-list-item: 6px;        /* between bullets */
@@ -75,7 +75,7 @@ strong {
   position: relative;
   width: 1200px;
   height: 1611px;
-  padding: 78px;
+  padding: 64px;
   background: #fff;
   break-after: page;
   page-break-after: always;
@@ -379,54 +379,58 @@ a {
 <div><strong>Mobile: <a href="tel:+821020612280">01020612280</strong></a></div>
 </section>
 <h1>오찬우 - Chanwu (Tyler) Oh</h1>
-<p class="summary">하네스 엔지니어링으로 AI를 안정적으로 도입해 서비스를 고도화 시키는 BE 개발자.</p>
-<p class="summary">BE 뿐만 아니라, 클라우드 인프라 및 배포 과정에서도 실력을 키워 서비스 전체 흐름을 구축, 운영, 파악합니다.</p>
-<p class="summary">한·영 bilingual이므로, 최신 영문 기술 문서를 그대로 습득하며 바로 적용하고, 문화 간의 지식 공유를 즐깁니다.</p>
+<p class="summary">Go 백엔드부터 AWS 인프라까지, 서비스 전체를 구축하고 운영하는 BE 개발자입니다.</p>
+<p class="summary">AI 에이전트를 활용한 하네스 엔지니어링으로 개발하며, 스펙과 컨텍스트, 리뷰 게이트를 직접 설계합니다.</p>
+<p class="summary">한·영 이중언어 사용자로서, 영문 기술 문서와 스펙을 원문으로 읽고 팀에 정리해 공유합니다.</p>
 <h2>프로젝트</h2>
 <section class="entry">
 <div class="entry-row entry-company"><div class="entry-main"><a href="https://chaphysicaltherapy.com/">Cha Physical Therapy</a></div><div class="entry-side">웹앱 (미국 NYC 물리치료 클리닉)</div></div>
-<div class="entry-row entry-role"><div class="entry-main">배포: Docker, AWS, Terraform, Cloudflare | BE: Go | FE: JS, CSS, HTML</div><div class="entry-side"><em>2025 6월 - 현재까지</em></div></div>
-<p>미국 물리치료 클리닉 마케팅팀의 단독 개발자로서 웹사이트의 FE, BE, AWS 인프라 전체를 혼자서 구축, 배포, 운영하고있습니다. 광고 효과를 파악하기 위해 pixel 적용하고 대시보드도 구축했습니다. 현재는 1개의 EC2 인스턴스에 Docker Compose 컨테이너 3개 (Web, DB, Caddy)로 구성됐으며, Cloudflare CDN cache 적용해 레이턴시를 감축했습니다. DAU가 평균 30, 최대 200이므로 비용 최소화를 위해 autoscaling은 도입 안 했습니다.</p>
+<div class="entry-row entry-role"><div class="entry-main">Infra: AWS, Docker, Cloudflare | BE: Go, MySQL | FE: JS, CSS, HTML</div><div class="entry-side"><em>2025.08 - 현재</em></div></div>
+<p>미국 물리치료 클리닉과 프리랜서 계약을 맺고, 웹 서비스 전체를 <strong>설계, 구축, 배포, 운영하는 단독 개발자</strong>로 일하고 있습니다.</p>
 <h4>Squarespace → AWS 마이그레이션</h4>
-<p>Squarespace 기반 클리닉 웹사이트를 AWS 기반 웹앱으로 이전해 UI 개선, Stripe 결제 연동, 레이턴시 감축을 구현했습니다. 기존 SaaS 환경은 UI 커스터마이징과 성능 개선에 제약이 있었고, 마케팅 팀을 설득하기 위해 GitHub Pages 데모로 개선된 UI와 속도를 직접 보여줬습니다. 이후 <strong>Go 백엔드와 Docker 배포 구조</strong>로 웹앱을 재구축하며, 마이그레이션 설득에는 작동하는 프로토타입이 가장 효과적이라는 점을 배웠습니다.</p>
-<h4>크래시 후 서비스 복구 및 하드닝</h4>
-<p>2026년 4월, AWS EBS gp3 볼륨의 I/O 처리량 한도 초과로 서비스 장애가 발생했습니다. 원인은 데이터 누적, 비효율적인 쿼리, 타임아웃 부재로 인한 디스크 I/O 급증이었습니다. 새 EBS 볼륨으로 서비스를 복구한 뒤 <strong>쿼리 재작성, 인덱스 추가, 타임아웃 설정, 데이터 정리 작업, CloudWatch 모니터링</strong>을 적용해 재발 가능성을 낮췄고, 자세한 내용은 <a href="https://github.com/ohchanwu/cha-pt-postmortems/blob/main/2026-04-17/2026-04-17.ko.md">사후 보고서</a>에 정리했습니다.</p>
+<p>Squarespace는 UI 커스터마이징에 제약이 있었고, 삽입한 CSS/JS 코드 때문에 페이지 응답이 느렸습니다. 설명보다 직접 보여 주는 것이 낫다고 판단해 <strong>작동하는 GitHub Pages 데모</strong>로 마케팅팀을 설득했고, 이후 Go와 Docker로 사이트를 재구축했습니다.</p>
+<h4>비개발자를 위한 프론트엔드 배포 체계</h4>
+<p>비개발자 담당자가 백엔드와 클라우드 접근 없이 AI 에이전트로 사이트를 직접 수정하고 배포할 수 있어야 했습니다. 다만 Go 서버가 처리하던 리다이렉트와 분석, 폼 폴백은 그대로 지켜야 했습니다. 그래서 사이트를 별도 저장소로 분리해 <strong>Cloudflare Worker 뒤의 AWS Amplify</strong>로 배포하고, 라우트와 폼, 링크 계약을 고정해 <strong>Python 검사, 브라우저 스모크 테스트, CI 게이트, Gitleaks</strong>로 강제했습니다. 지금은 PR과 Amplify 미리보기로 변경이 배포되며, 클리닉 직원이 이 방식으로 폼 수정을 직접 배포했습니다.</p>
+<h4>장애 복구 및 하드닝</h4>
+<p>2026년 4월, EC2 상태 검사는 정상이었지만 사이트가 2시간 54분 동안 응답하지 않았습니다. systemd 저널로 OOM 가설을 배제한 뒤, CloudWatch에서 <strong>gp3 볼륨이 처리량 한도인 125MiB/s에 막힌 것</strong>을 확인했습니다. 원인은 OS와 MySQL, 웹 서버가 함께 쓰는 루트 볼륨에서 인덱스 없이 실행된 관리자 대시보드 쿼리였습니다. 새 인스턴스에서 고객 데이터 손실 없이 복구한 뒤 <strong>CloudWatch 알람, 쿼리 실행 시간 제한, 로그 로테이션, EXPLAIN 기반 인덱스</strong>를 적용했고, 과정은 <a href="https://github.com/ohchanwu/cha-pt-postmortems/blob/main/2026-04-17/2026-04-17.ko.md">사후 보고서</a>로 공개했습니다.</p>
 </section>
 <section class="entry">
-<div class="entry-row entry-company"><div class="entry-main"><a href="https://github.com/ohchanwu/job-scraper">Job Scraper</a></div><div class="entry-side">채용 공고 스크레이퍼, AI 활용 적합성 평가</div></div>
-<div class="entry-row entry-role"><div class="entry-main"><strong>BE: Go | FE: JS, CSS, HTML</strong></div><div class="entry-side"><em>2026 5월 - 현재까지</em></div></div>
-<p>여러 채용 포털에 흩어진 신입 개발자 공고를 한곳에 모으고, 키워드 매칭과 AI 추론으로 사용자별 적합도를 계산하는 앱을 만들고 있습니다. 현재는 1개의 Go 바이너리가 localhost에 스크랩 내용을 서비스하는 로컬 웹앱입니다. AI 추론은 2단계로 이루어지며, 첫 단계는 사용자가 설정한 ± 키워드를 공고랑 매칭하는 결정론적 Go 로직을 보완하는 단계입니다. 2번째 단계는 사용자가 서술한 단기 및 장기 목표를 토대로 이미 계산된 점수에 ± 델타를 적용하고, 공고에 특정 문장을 뽑아 델타 근거로 UI에 제시합니다.</p>
+<div class="entry-row entry-company"><div class="entry-main"><a href="https://github.com/ohchanwu/jobcron">Jobcron</a></div><div class="entry-side">채용 공고 브리핑, AI 적합도 평가</div></div>
+<div class="entry-row entry-role"><div class="entry-main"><strong>Infra: AWS, Terraform, Docker, Cloudflare | BE: Go, PostgreSQL</strong></div><div class="entry-side"><em>2026.05 - 현재</em></div></div>
+<p>국내 채용 포털에 흩어진 신입 공고를 매일 하나의 브리핑으로 모으고, 공고마다 <strong>근거가 설명된 적합도 점수</strong>를 제공합니다. Go 바이너리를 <strong>Terraform으로 관리하는 EC2와 프라이빗 RDS</strong>에 배포했고, 암호화 백업 복원에 성공해야 릴리스를 승인합니다. 2단계 LLM 평가에서는 <strong>모든 점수 조정이 공고 원문을 인용해야 하며</strong>, 조정 폭 상한과 토큰 예산, 캐싱, 결정론적 폴백으로 비용과 실패를 제어합니다. 여러 AI 에이전트를 활용한 하네스 엔지니어링으로 개발했습니다.</p>
 </section>
 </main>
 <main class="page project-page">
 <section class="entry">
-<div class="entry-row entry-company"><div class="entry-main"><a href="https://ohchanwu.github.io/alix-chaput-architecture/">Alix Chaput Architecture</a></div><div class="entry-side">웹앱 (프랑스 건축가 포트폴리오)</div></div>
-<div class="entry-row entry-role"><div class="entry-main"><strong>배포: GitHub Pages | FE: JS, CSS, HTML</strong></div><div class="entry-side"><em>2025 5월 - 2025 7월</em></div></div>
-<p>프랑스 건축가 포트폴리오 사이트를 데스크톱, 태블릿, 모바일에서 일관되게 보이도록 구현했습니다. 큰 이미지 용량으로 로딩이 느렸고, 화면 크기별 레이아웃 유지가 필요했기 때문에 <strong>CSS breakpoint와 JavaScript로 반응형 레이아웃</strong>을 만들고 이미지를 WebP로 변환했습니다. GitHub Pages에 배포해 별도 도메인 비용 없이 운영했고, 이 과정에서 복잡한 화면 상태에는 React 같은 선언형 프레임워크가 유용하다는 점을 체감했습니다.</p>
+<div class="entry-row entry-company"><div class="entry-main"><a href="https://ohchanwu.github.io/alix-chaput-architecture/">Alix Chaput Architecture</a></div><div class="entry-side">웹사이트 (프랑스 건축가 포트폴리오)</div></div>
+<div class="entry-row entry-role"><div class="entry-main"><strong>Deploy: GitHub Pages | FE: JS, CSS, HTML</strong></div><div class="entry-side"><em>2025.05 - 2025.07</em></div></div>
+<p>프랑스 건축가의 포트폴리오가 데스크톱, 태블릿, 모바일에서 일관되게 보이도록 <strong>CSS breakpoint와 JavaScript로 반응형 레이아웃</strong>을 직접 구현하고, WebP 이미지와 GitHub Pages로 배포했습니다. UI를 직접 만들며 기본기를 다졌고, 선언형 프레임워크가 왜 필요한지 체감했습니다.</p>
 </section>
 <section class="education-section">
 <h2>교육</h2>
 <section class="education">
 <section class="entry education-entry">
-<div class="entry-row entry-company"><div class="entry-main">삼성 청년 SW·AI 아카데미 (SSAFY)</div><div class="entry-side"><em>서울특별시 · 16기</em></div></div>
-<div class="entry-row entry-role"><div class="entry-main"><strong>Coding 트랙 - 자바 반</strong></div><div class="entry-side"><em>2026 - 2027 (예정)</em></div></div>
+<div class="entry-row entry-company"><div class="entry-main">삼성 청년 SW·AI 아카데미 (SSAFY)</div><div class="entry-side"><em>서울 · 16기</em></div></div>
+<div class="entry-row entry-role"><div class="entry-main"><strong>Coding 트랙 - 자바 전공반</strong></div><div class="entry-side"><em>2026.07 - 현재</em></div></div>
 <ul>
-<p>삼성 주관 1년 SW 교육과정 합격 — 알고리즘·AI·팀 프로젝트 중심</p>
+<li>자바 비전공반에서 과목평가와 월말평가 모두 반 1등, 비전공 전체 2등을 기록한 뒤, 기술 면접을 통과해 전공반으로 이동</li>
+<li>자바 전공반 부반장</li>
+<li>AI 챌린지 (Kaggle 한국어 이미지 텍스트 VQA, 217팀, 4인 팀): 로짓 스코어링, 편향 보정, LoRA, 앙상블로 팀 점수를 0.956에서 0.974로 올려 반 1위</li>
 </ul>
 </section>
 <section class="entry education-entry">
 <div class="entry-row entry-company"><div class="entry-main">독학 · 자기주도 학습</div><div class="entry-side"><em>2025 - 2026</em></div></div>
-<p>졸업 이후 기존 미국 법대의 길에서 소프트웨어 개발로 길을 바꿔, 1년 독학으로 기본기를 다졌습니다. 초기에는 암기식으로 공부했으며, 105000단어에 달하는 Anki flashcard deck 여러개를 만들어 외웠습니다. 단순 암기 방식의 한계점을 절감해 서비스를 직접 만들고, <a href="https://github.com/ohchanwu/ninefive-git-go">Git</a>하고 <a href="https://github.com/ohchanwu/codecrafters-claude-code-go">Claude Code</a>등 자주 사용하는 도구의 기본 틀을 <a href="https://github.com/ohchanwu/hand-coded">직접 코드로 작성해</a> 원리를 이해합니다.</p>
+<ul>
+<li>졸업 후 미국 법대 진로에서 소프트웨어 개발로 전환했습니다. 105,000단어 분량의 Anki 덱으로 암기하던 방식의 한계를 느끼고, 서비스를 직접 만들며 <a href="https://github.com/ohchanwu/ninefive-git-go">Git</a>과 <a href="https://github.com/ohchanwu/codecrafters-claude-code-go">Claude Code</a> 같은 도구를 <a href="https://github.com/ohchanwu/hand-coded">손으로 직접 구현</a>해 원리를 익힙니다.</li>
+</ul>
 <div class="ss-chips">
-<div class="ss-chip-row"><span class="ss-tag">강의</span><span class="ss-chip"><a href="https://www.udemy.com/course/go-programming-language/?srsltid=AfmBOoqCLJJ8DiZ2KhKVp_T-DCQ2kxrgI6HmF9vYBjDJZ-zSfPh3nAo4&couponCode=MT260629G1">Web Development w/ Google's Go</a></span><span class="ss-chip"><a href="https://www.freecodecamp.org/learn/javascript-v9/">freeCodeCamp JavaScript</a></span><span class="ss-chip"><a href="https://www.freecodecamp.org/certification/ohchanwu/responsive-web-design">freeCodeCamp Web Design (HTML+CSS)</a></span></div>
-<div class="ss-chip-row"><span class="ss-tag">도서</span><span class="ss-chip"><a href="https://headfirstgo.com/">Head First Go</a></span><span class="ss-chip"><a href="https://www.jre-training.com/JIT/Resources/ClassTexts/Head%20First%20Java.pdf">Head First Java</a></span><span class="ss-chip"><a href="https://github.com/ndb796/python-for-coding-test">이것이 코딩 테스트다 with 파이썬</a></span></div>
+<div class="ss-chip-row"><span class="ss-tag">강의</span><span class="ss-chip"><a href="https://www.udemy.com/course/go-programming-language/">Web Development w/ Google's Go</a></span><span class="ss-chip"><a href="https://www.freecodecamp.org/learn/javascript-v9/">freeCodeCamp JavaScript</a></span><span class="ss-chip"><a href="https://www.freecodecamp.org/certification/ohchanwu/responsive-web-design">freeCodeCamp Web Design</a></span></div>
+<div class="ss-chip-row"><span class="ss-tag">도서</span><span class="ss-chip"><a href="https://headfirstgo.com/">Head First Go</a></span><span class="ss-chip"><a href="https://www.oreilly.com/library/view/head-first-java/9781492091646/">Head First Java</a></span><span class="ss-chip"><a href="https://github.com/ndb796/python-for-coding-test">이것이 코딩 테스트다 with 파이썬</a></span></div>
 </div>
 </section>
 <section class="entry education-entry">
-<div class="entry-row entry-company"><div class="entry-main">한양대학교</div><div class="entry-side"><em>서울특별시 · 2017 - 2025</em></div></div>
-<div class="entry-row entry-role"><div class="entry-main">국제학부 학사</div><div class="entry-side"><em>GPA: 3.91 / 4.5 (졸업우등상)</em></div></div>
-<ul>
-</ul>
+<div class="entry-row entry-company"><div class="entry-main">한양대학교</div><div class="entry-side"><em>서울 · 2017 - 2025</em></div></div>
+<div class="entry-row entry-role"><div class="entry-main"><strong>국제학부 학사</strong></div><div class="entry-side"><em>GPA 3.91 / 4.5 (졸업우등)</em></div></div>
 </section>
 </section>
 </section>
@@ -434,37 +438,37 @@ a {
 <section class="support-column support-left">
 <h2>스택</h2>
 <section class="skills">
-<p>Languages: <span class="skill-pill">Go</span> <span class="skill-pill">Java</span> <span class="skill-pill">JS</span> <span class="skill-pill">Python</span></p>
-<p>Database: <span class="skill-pill">MySQL</span> <span class="skill-pill">MongoDB</span></p>
-<p>배포: <span class="skill-pill">AWS</span> <span class="skill-pill">Docker</span> <span class="skill-pill">Terraform</span> <span class="skill-pill">Cloudflare</span></p>
-<p>Tools: <span class="skill-pill">Git</span></p>
+<p>Languages: <span class="skill-pill">Go</span> <span class="skill-pill">Java</span> <span class="skill-pill">Python</span> <span class="skill-pill">JS</span></p>
+<p>Database: <span class="skill-pill">MySQL</span> <span class="skill-pill">PostgreSQL</span> <span class="skill-pill">MongoDB</span></p>
+<p>Infra: <span class="skill-pill">AWS</span> <span class="skill-pill">Docker</span> <span class="skill-pill">Terraform</span> <span class="skill-pill">Cloudflare</span></p>
+<p>Tools: <span class="skill-pill">Git</span> <span class="skill-pill">GitHub Actions</span> <span class="skill-pill">Linux</span></p>
 </section>
 <h2>오픈소스</h2>
 <section class="entry">
 <div class="entry-row entry-company"><div class="entry-main">freeCodeCamp</div><div class="entry-side"><em>JS 커리큘럼</em></div></div>
 <ul>
-<p class="ss-desc"><a href="https://github.com/freeCodeCamp/freeCodeCamp/pull/66981">PR #66981</a> (병합됨) WeakSet 레슨 부정확한 내용 수정</p>
+<li><a href="https://github.com/freeCodeCamp/freeCodeCamp/pull/66981">PR #66981</a> (병합됨): WeakSet 레슨의 잘못된 설명을 바로잡음</li>
 </ul>
 </section>
 </section>
 <section class="support-column support-right">
 <h2>자격증</h2>
 <section class="entry">
-<div class="entry-row entry-company"><div class="entry-main">TOEFL (IBT)</div><div class="entry-side"><em>119 / 120</em></div></div>
+<div class="entry-row entry-company"><div class="entry-main">TOEFL (iBT)</div><div class="entry-side"><em>119 / 120</em></div></div>
 <ul>
-<p class="ss-desc">C2 - Native (영어 원어민 수준)</p>
+<li>C2 (영어 원어민 수준)</li>
 </ul>
 </section>
 <section class="entry">
 <div class="entry-row entry-company"><div class="entry-main">LSAT</div><div class="entry-side"><em>173 / 180 (상위 1%)</em></div></div>
 <ul>
-<p class="ss-desc">미국 법대 입학 시험 LSAT은 영어 문서를 읽고 논리적으로 파악하는 능력을 평가합니다.</p>
+<li>영어 지문 독해와 논리적 추론을 평가하는 미국 법대 입학시험</li>
 </ul>
 </section>
 <h2>군복무</h2>
 <section class="entry">
-<div class="entry-row entry-company"><div class="entry-main">제2작전사령부</div><div class="entry-side">대구광역시</div></div>
-<div class="entry-row entry-role"><div class="entry-main" style="font-weight: 400;">한·영 통역병</div><div class="entry-side"><em>2020-2022</em></div></div>
+<div class="entry-row entry-company"><div class="entry-main">제2작전사령부</div><div class="entry-side">대구</div></div>
+<div class="entry-row entry-role"><div class="entry-main" style="font-weight: 400;">한·영 통역병</div><div class="entry-side"><em>2018 - 2020</em></div></div>
 </section>
 </section>
 </section>
