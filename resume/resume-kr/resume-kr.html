@@ -1,0 +1,526 @@
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>Resume Updated KR</title>
+  <style>
+:root {
+  --ink: #101010;
+  --blue: #0a76b8;
+  --lightblue: #4f9bd2;
+  --blue-soft: #eef6fd;
+  --rule: #dedede;
+  --label-purpose: #0a76b8;
+
+  /* ===== Vertical spacing scale =====
+     One token per *type* of vertical gap. Tune these (not the rules below). */
+
+  /* Main document column (largest -> smallest):
+     section 72 > entry 64 > entry-edu 54 > subhead 44 > section-body 26 > roleline 20 > line 14 */
+  --sp-header: 40px;          /* header-links bar -> name (h1) */
+  --sp-h1: 26px;              /* name (h1) -> summary */
+  --sp-section: 58px;         /* above a major section heading (h2) */
+  --sp-section-body: 22px;    /* section heading -> its first content */
+  --sp-entry: 74px;           /* between project entries */
+  --sp-entry-edu: 22px;       /* between education entries */
+  --sp-role: 14px;            /* company line -> role line */
+  --sp-roleline: 20px;        /* role line -> first labeled line */
+  --sp-line: 14px;            /* between labeled lines */
+  --sp-subhead: 44px;         /* above an h4 sub-heading */
+  --sp-subhead-body: 8px;     /* h4 sub-heading -> its first labeled line (hugs it) */
+  --sp-list-before: 14px;     /* before a bullet list */
+  --sp-list-item: 5px;        /* between bullets */
+  --sp-chips: 18px;           /* before the chip-rows block */
+  --sp-chip-row: 14px;        /* between chip rows */
+
+  /* Support columns (스택 / 오픈소스 / 자격증 / 군복무) — own scale */
+  --sp-col-top: 24px;         /* education block -> support columns */
+  --sp-col-section: 46px;     /* above a non-first column heading */
+  --sp-col-section-body: 15px;/* column heading -> its first content */
+  --sp-col-entry: 38px;       /* between credential units in a column */
+  --sp-col-line: 13px;        /* stacked lines inside a column (skills rows) */
+}
+
+@page {
+  size: 1200px 1611px;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 1200px;
+  background: #fff;
+  color: var(--ink);
+  font-family: "Noto Sans CJK KR", "Noto Sans KR", "Apple SD Gothic Neo", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 23px;
+  line-height: 1.58;
+  word-break: keep-all;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* standardized bold weight for all emphasized text (h1 is the exception) */
+strong {
+  font-weight: 600;
+}
+
+.page {
+  position: relative;
+  width: 1200px;
+  height: 1611px;
+  padding: 78px;
+  background: #fff;
+  break-after: page;
+  page-break-after: always;
+}
+
+.page:last-child {
+  break-after: auto;
+  page-break-after: auto;
+}
+
+/* ===== Headings ===== */
+h1 {
+  margin: 0 0 var(--sp-h1);
+  font-size: 31px;
+  line-height: 1.12;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+h2 {
+  margin: var(--sp-section) 0 var(--sp-section-body);
+  color: var(--blue);
+  font-size: 31px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 2.4px;
+  break-after: avoid;
+}
+
+.page:first-of-type h2 {
+  margin-top: var(--sp-section);
+}
+
+.project-page h4 {
+  margin: var(--sp-subhead) 0 0;
+  color: #000;
+  font-size: 19.5px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+/* ===== Summary + header links ===== */
+.summary {
+  max-width: 1000px;
+  font-size: 21px;
+  line-height: 1.6;
+}
+
+.header-links {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 14px;
+  margin: 0 0 var(--sp-header);
+  padding: 11px 0 12px;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.header-links div {
+  min-width: 0;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.header-links strong {
+  font-weight: 600;
+}
+
+.header-links a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+/* ===== Entry blocks (company name / role / right-aligned dates) ===== */
+.entry {
+  break-inside: avoid;
+}
+
+.entry p {
+  margin-top: var(--sp-line);
+}
+
+/* between project entries (the direct children of the page) */
+.project-page > .entry + .entry {
+  margin-top: var(--sp-entry);
+}
+
+.entry-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 420px;
+  column-gap: 34px;
+  align-items: baseline;
+}
+
+.entry-company .entry-main {
+  font-size: 23px;
+  line-height: 1.35;
+  font-weight: 600;
+  color: var(--lightblue);
+}
+
+.entry-company .entry-main a {
+  font-weight: 600;
+  text-decoration-thickness: 2px;
+}
+
+.entry-side {
+  text-align: right;
+  font-size: 21px;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+.entry-role {
+  margin-top: var(--sp-role);
+}
+
+.project-page .entry-role {
+  grid-template-columns: minmax(0, 1fr) 240px;
+}
+
+.entry-role .entry-main {
+  font-size: 21px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.entry-role .entry-side {
+  font-size: 21px;
+}
+
+/* ===== Labeled lines (목적 / 문제 / 분석 / 해결 / 교훈 …) ===== */
+.labeled-line {
+  display: grid;
+  grid-template-columns: 60px minmax(0, 1fr);
+  column-gap: 9px;
+  align-items: start;
+  margin-top: var(--sp-line);
+  font-size: 21px;
+  line-height: 1.5;
+}
+
+/* role line -> first labeled line, and h4 -> first labeled line */
+.entry-role + .labeled-line {
+  margin-top: var(--sp-roleline);
+}
+
+.project-page h4 + .labeled-line {
+  margin-top: var(--sp-subhead-body);
+}
+
+.line-label {
+  margin-top: 1px;
+  display: inline-block;
+  font-weight: normal;
+  line-height: 1.35;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+.line-label::after {
+  content: ":";
+}
+
+.label-body {
+  min-width: 0;
+}
+
+/* ===== Lists (blue dash bullets) ===== */
+ul {
+  margin: var(--sp-list-before) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+ul:empty {
+  display: none;
+}
+
+li {
+  position: relative;
+  margin: var(--sp-list-item) 0;
+  padding-left: 26px;
+  font-size: 21px;
+  line-height: 1.5;
+}
+
+li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 16px;
+  width: 12px;
+  height: 3px;
+  background: var(--blue);
+}
+
+/* ===== Skills + pills ===== */
+.skills p {
+  margin: 0 0 var(--sp-col-line);
+  font-size: 20.5px;
+}
+
+.skill-pill {
+  display: inline-block;
+  margin: 0 3px 5px 3px;
+  padding: 1px 6px 2px;
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-weight: 600;
+}
+
+/* ===== Education (full-width section, below projects) ===== */
+.education-section .entry-row {
+  grid-template-columns: minmax(0, 1fr) 300px;
+}
+
+.education .entry + .entry {
+  margin-top: var(--sp-entry-edu);
+}
+
+.education .entry-role {
+  margin-top: var(--sp-role);
+}
+
+.education .entry-role .entry-main {
+  font-size: 21px;
+  font-weight: 600;
+}
+
+p.ss-desc {
+  margin: 0;
+  font-size: 21px;
+}
+
+/* self-study courses / books as muted chips */
+.ss-chips {
+  margin-top: var(--sp-chips);
+}
+
+.ss-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 9px;
+  margin-bottom: var(--sp-chip-row);
+}
+
+.ss-tag {
+  flex: none;
+  width: 52px;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--lightblue);
+}
+
+.ss-chip {
+  display: inline-block;
+  padding: 3px 11px 4px;
+  background: #f0f0f0;
+  color: #555;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+/* ===== Support columns (스택 / 오픈소스 / 자격증 / 군복무) ===== */
+.support-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 58px;
+  margin-top: var(--sp-col-top);
+}
+
+.support-column {
+  min-width: 0;
+}
+
+/* column headings + units use the support-column scale, not the main one */
+.support-columns h2 {
+  margin: var(--sp-col-section) 0 var(--sp-col-section-body);
+}
+
+.support-columns .entry + .entry {
+  margin-top: var(--sp-col-entry);
+}
+
+.support-right {
+  border-left: 1px solid var(--rule);
+  padding-left: 58px;
+}
+
+.support-column > h2:first-child {
+  margin-top: 0;
+}
+
+.support-columns .entry-row {
+  grid-template-columns: minmax(0, 1fr) 185px;
+  column-gap: 24px;
+}
+
+/* org names in support columns are plain text -> keep them ink, not lightblue */
+.support-columns .entry-company .entry-main {
+  color: var(--ink);
+}
+
+/* ===== Links ===== */
+a {
+  color: var(--lightblue);
+  text-decoration: underline;
+  text-decoration-color: var(--lightblue);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+}
+
+.ss-chip a {
+  text-underline-offset: 2px;
+}
+
+@media screen {
+  body {
+    background: #f5f5f5;
+  }
+
+  .page {
+    margin: 0 auto;
+  }
+}
+</style>
+</head>
+<body>
+  <main class="page project-page">
+<section class="header-links">
+<div><strong>Github: <a href="https://github.com/ohchanwu">@ohchanwu</a></strong></div>
+<div><strong>Portfolio: <a href="https://ohchanwu.dev/">ohchanwu.dev</a></strong></div>
+<div><strong>Email: <a href="mailto:ohchanwu@pm.me">ohchanwu@pm.me</a></strong></div>
+<div><strong>Mobile: <a href="tel:+821020612280">01020612280</a></strong></div>
+</section>
+<h1>오찬우 - Chanwu (Tyler) Oh</h1>
+<p class="summary">하네스 엔지니어링으로 AI를 안정적으로 도입해 서비스를 고도화 시키는 BE 개발자.</p>
+<p class="summary">BE 뿐만 아니라, 클라우드 인프라 및 배포 과정에서도 실력을 키워 서비스 전체 흐름을 구축, 운영, 파악합니다.</p>
+<p class="summary">한·영 bilingual이므로, 최신 영문 기술 문서를 그대로 습득하며 바로 적용하고, 문화 간의 지식 공유를 즐깁니다.</p>
+<h2>프로젝트</h2>
+<section class="entry">
+<div class="entry-row entry-company"><div class="entry-main"><a href="https://chaphysicaltherapy.com/">Cha Physical Therapy</a></div><div class="entry-side">웹앱 (미국 NYC 물리치료 클리닉)</div></div>
+<div class="entry-row entry-role"><div class="entry-main"><strong>배포: Docker, AWS, Terraform, Cloudflare | BE: Go | FE: JS, CSS, HTML</strong></div><div class="entry-side"><em>2025 6월 - 현재까지</em></div></div>
+<p class="labeled-line label-운영"><span class="line-label">운영</span><span class="label-body">마케팅팀의 <strong>단독 개발자로 FE·BE·AWS 인프라 전체를 구축·배포·운영</strong>. 광고 효과 측정을 위해 pixel 적용 및 대시보드 구축. EC2 1대에 Docker Compose 컨테이너 3개(Web, DB, Caddy), Cloudflare CDN cache로 레이턴시 N% 감축. DAU 평균 30 / 최대 200이라 비용 최소화를 위해 autoscaling은 미도입</span></p>
+<h4>Squarespace → AWS 마이그레이션</h4>
+<p class="labeled-line label-목적"><span class="line-label">목적</span><span class="label-body">UI 개선, <strong>Stripe 결제 연동(월 평균 N건), 페이지 로드 N% 단축</strong> 구현</span></p>
+<p class="labeled-line label-문제"><span class="line-label">문제</span><span class="label-body">Squarespace SaaS의 UI 커스터마이징 제약과 느린 페이지 응답 속도</span></p>
+<p class="labeled-line label-분석"><span class="line-label">분석</span><span class="label-body">마케팅 팀 설득에는 설명보다 개선된 UI와 속도를 직접 보여주는 방식이 더 효과적이라고 판단</span></p>
+<p class="labeled-line label-해결"><span class="line-label">해결</span><span class="label-body">GitHub Pages 데모로 <strong>AWS 이전을 설득</strong>하고, Go 백엔드와 Docker 배포 구조로 재구축</span></p>
+<p class="labeled-line label-교훈"><span class="line-label">교훈</span><span class="label-body">마이그레이션이나 새 기능을 설득할 때는 <strong>작동하는 프로토타입</strong>이 효과적</span></p>
+<h4>크래시 후 서비스 복구 및 하드닝 (자세한 내용: <a href="https://github.com/ohchanwu/cha-pt-postmortems/blob/main/2026-04-17/2026-04-17.ko.md">사후 보고서</a>)</h4>
+<p class="labeled-line label-문제"><span class="line-label">문제</span><span class="label-body">2026년 4월, AWS EBS gp3 볼륨의 I/O 처리량 한도 초과로 서비스 장애 발생</span></p>
+<p class="labeled-line label-분석"><span class="line-label">분석</span><span class="label-body">데이터 누적과 비효율적인 쿼리, 타임아웃 부재로 디스크 I/O가 급증</span></p>
+<p class="labeled-line label-해결"><span class="line-label">해결</span><span class="label-body"><strong>쿼리 재작성, 인덱스 추가, 타임아웃 설정, 데이터 정리 작업, CloudWatch 모니터링</strong> 적용 → 쿼리 응답 N% 단축, 디스크 I/O N% 감소</span></p>
+<p class="labeled-line label-교훈"><span class="line-label">교훈</span><span class="label-body">DB 최적화와 모니터링은 성능 개선을 넘어 서비스 안정성의 핵심</span></p>
+</section>
+<section class="entry">
+<div class="entry-row entry-company"><div class="entry-main"><a href="https://github.com/ohchanwu/job-scraper">Job Scraper</a></div><div class="entry-side">채용 공고 스크레이퍼, AI 적합성 평가</div></div>
+<div class="entry-row entry-role"><div class="entry-main"><strong>BE: Go | FE: JS, CSS, HTML</strong></div><div class="entry-side"><em>2026 5월 - 현재까지</em></div></div>
+<p class="labeled-line label-목적"><span class="line-label">목적</span><span class="label-body">N개 채용 포털에 흩어진 신입 개발자 <strong>공고를 한곳에 모으고(일 N건 수집), AI 추론으로 사용자별 적합도를 계산</strong></span></p>
+<p class="labeled-line label-구조"><span class="line-label">구조</span><span class="label-body">1개의 Go 바이너리가 localhost에서 스크랩 결과를 서비스하는 로컬 웹앱</span></p>
+<p class="labeled-line label-추론"><span class="line-label">추론</span><span class="label-body">2단계 구성 — ① 사용자가 설정한 <strong>± 키워드</strong>를 공고와 매칭하는 결정론적 로직을 AI가 보완, ② 사용자의 <strong>단기·장기 목표</strong>를 토대로 점수에 ± 델타를 적용하고 공고에서 근거 문장을 뽑아 제시</span></p>
+</section>
+</main>
+<main class="page project-page">
+<section class="entry">
+<div class="entry-row entry-company"><div class="entry-main"><a href="https://ohchanwu.github.io/alix-chaput-architecture/">Alix Chaput Architecture</a></div><div class="entry-side">웹앱 (프랑스 건축가 포트폴리오)</div></div>
+<div class="entry-row entry-role"><div class="entry-main"><strong>배포: GitHub Pages | FE: JS, CSS, HTML</strong></div><div class="entry-side"><em>2025 5월 - 2025 7월</em></div></div>
+<p class="labeled-line label-목적"><span class="line-label">목적</span><span class="label-body">프랑스 건축가 포트폴리오를 <strong>데스크톱, 태블릿, 모바일에서 일관되게 구현</strong></span></p>
+<p class="labeled-line label-문제"><span class="line-label">문제</span><span class="label-body">큰 이미지 용량으로 로딩이 느렸고, 화면 크기별 레이아웃 유지가 필요</span></p>
+<p class="labeled-line label-분석"><span class="line-label">분석</span><span class="label-body">클라이언트가 별도 도메인 비용을 원하지 않아 GitHub Pages 기반 정적 사이트가 적합</span></p>
+<p class="labeled-line label-해결"><span class="line-label">해결</span><span class="label-body"><strong>CSS breakpoint와 JavaScript로 반응형 레이아웃</strong>을 만들고, 이미지는 WebP로 변환해 용량 N% 절감 · 로딩 N% 단축</span></p>
+<p class="labeled-line label-교훈"><span class="line-label">교훈</span><span class="label-body">반응형 UI를 직접 구현하며 기본기를 다졌고, 복잡한 화면 상태에는 선언형 프레임워크가 유용하다는 점을 체감</span></p>
+</section>
+<section class="education-section">
+<h2>교육</h2>
+<section class="education">
+<section class="entry education-entry">
+<div class="entry-row entry-company"><div class="entry-main">삼성 청년 SW·AI 아카데미 (SSAFY)</div><div class="entry-side"><em>서울특별시 · 16기</em></div></div>
+<div class="entry-row entry-role"><div class="entry-main"><strong>Coding 트랙 - 자바 반</strong></div><div class="entry-side"><em>2026 - 2027 (예정)</em></div></div>
+<ul>
+<li>삼성 주관 1년 SW 교육과정 합격 — 알고리즘·AI·팀 프로젝트 중심</li>
+</ul>
+</section>
+<section class="entry education-entry">
+<div class="entry-row entry-company"><div class="entry-main">독학 · 자기주도 학습</div><div class="entry-side"><em>2025 - 2026</em></div></div>
+<ul>
+<li>졸업 이후 기존 미국 법대의 길에서 소프트웨어 개발로 길을 바꿔, 1년 독학으로 기본기를 다졌습니다. 초기에는 암기식으로 공부했으며, 105,000단어에 달하는 Anki flashcard deck 여러개를 만들어 외웠습니다. 단순 암기 방식의 한계점을 절감해 서비스를 직접 만들고, <a href="https://github.com/ohchanwu/ninefive-git-go">Git</a>하고 <a href="https://github.com/ohchanwu/codecrafters-claude-code-go">Claude Code</a>등 자주 사용하는 도구의 기본 틀을 <a href="https://github.com/ohchanwu/hand-coded">직접 코드로 작성해</a> 원리를 이해합니다.</li>
+</ul>
+<div class="ss-chips">
+<div class="ss-chip-row"><span class="ss-tag">강의</span><span class="ss-chip"><a href="https://www.udemy.com/course/go-programming-language/">Web Development w/ Google's Go</a></span><span class="ss-chip"><a href="https://www.freecodecamp.org/learn/javascript-v9/">freeCodeCamp JavaScript</a></span><span class="ss-chip"><a href="https://www.freecodecamp.org/certification/ohchanwu/responsive-web-design">freeCodeCamp Web Design (HTML+CSS)</a></span></div>
+<div class="ss-chip-row"><span class="ss-tag">도서</span><span class="ss-chip"><a href="https://headfirstgo.com/">Head First Go</a></span><span class="ss-chip"><a href="https://www.jre-training.com/JIT/Resources/ClassTexts/Head%20First%20Java.pdf">Head First Java</a></span><span class="ss-chip"><a href="https://github.com/ndb796/python-for-coding-test">이것이 코딩 테스트다 with 파이썬</a></span></div>
+</div>
+</section>
+<section class="entry education-entry">
+<div class="entry-row entry-company"><div class="entry-main">한양대학교</div><div class="entry-side"><em>서울특별시 · 2017 - 2025</em></div></div>
+<div class="entry-row entry-role"><div class="entry-main"><strong>국제학부 학사</strong></div><div class="entry-side"><em>GPA: 3.91 / 4.5 (졸업우등상)</em></div></div>
+</section>
+</section>
+</section>
+<section class="support-columns">
+<section class="support-column support-left">
+<h2>스택</h2>
+<section class="skills">
+<p>Languages: <span class="skill-pill">Go</span> <span class="skill-pill">Java</span> <span class="skill-pill">JS</span> <span class="skill-pill">Python</span></p>
+<p>Database: <span class="skill-pill">MySQL</span> <span class="skill-pill">MongoDB</span></p>
+<p>배포: <span class="skill-pill">AWS</span> <span class="skill-pill">Docker</span> <span class="skill-pill">Terraform</span> <span class="skill-pill">Cloudflare</span></p>
+<p>Tools: <span class="skill-pill">Git</span></p>
+</section>
+<h2>오픈소스</h2>
+<section class="entry">
+<div class="entry-row entry-company"><div class="entry-main">freeCodeCamp</div><div class="entry-side"><em>JS 커리큘럼</em></div></div>
+<ul>
+<li><a href="https://github.com/freeCodeCamp/freeCodeCamp/pull/66981">PR #66981</a> (병합됨) WeakSet 레슨 부정확한 내용 수정</li>
+</ul>
+</section>
+</section>
+<section class="support-column support-right">
+<h2>자격증</h2>
+<section class="entry">
+<div class="entry-row entry-company"><div class="entry-main">TOEFL (IBT)</div><div class="entry-side"><em>119 / 120</em></div></div>
+<ul>
+<li>C2 - Native (영어 원어민 수준)</li>
+</ul>
+</section>
+<section class="entry">
+<div class="entry-row entry-company"><div class="entry-main">LSAT</div><div class="entry-side"><em>173 / 180 (상위 1%)</em></div></div>
+<ul>
+<li>미국 법대 입학 시험 LSAT은 영어 문서를 읽고 논리적으로 파악하는 능력을 평가</li>
+</ul>
+</section>
+<h2>군복무</h2>
+<section class="entry">
+<div class="entry-row entry-company"><div class="entry-main">제2작전사령부</div><div class="entry-side">대구광역시</div></div>
+<div class="entry-row entry-role"><div class="entry-main" style="font-weight: 400;">한·영 통역병</div><div class="entry-side"><em>2020 - 2022</em></div></div>
+</section>
+</section>
+</section>
+  </main>
+</body>
+</html>

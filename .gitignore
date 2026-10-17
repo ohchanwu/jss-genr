@@ -8,5 +8,6 @@ companies/
 # OS / editor
 .DS_Store
 
-# Resume (personal data; has its own nested local git history)
-resume/
+
+# Resume reference material (third-party CVs/screenshots) stays local
+resume/resources/

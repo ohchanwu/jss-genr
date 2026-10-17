@@ -1,0 +1,13 @@
+prefix_rule(
+    pattern = ["make", "qa"],
+    decision = "allow",
+    justification = "Allow this resume project's local QA target to launch its headless browser check.",
+    match = [
+        "make qa",
+    ],
+    not_match = [
+        "make",
+        "make pdf",
+        "make qa-extra",
+    ],
+)

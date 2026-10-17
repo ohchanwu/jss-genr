@@ -1,0 +1,284 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Format Example Reproduction</title>
+  <style>:root {
+  --ink: #101010;
+  --blue: #0a76b8;
+  --blue-soft: #eef6fd;
+  --rule: #dedede;
+}
+
+@page {
+  size: 1200px 1611px;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 1200px;
+  min-height: 1611px;
+  background: #fff;
+  color: var(--ink);
+  font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 22px;
+  line-height: 1.48;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.page {
+  position: relative;
+  width: 1200px;
+  min-height: 1611px;
+  padding: 78px 70px 70px;
+  background: #fff;
+}
+
+.exact-visual .page {
+  background: #fff;
+}
+
+.exact-visual .page > * {
+  position: relative;
+  z-index: 1;
+}
+
+.exact-visual .page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-image: url("format_example.webp");
+  background-size: 1200px 1611px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  pointer-events: none;
+}
+
+h1 {
+  margin: 0 0 20px;
+  font-size: 48px;
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -1.1px;
+}
+
+.summary {
+  margin: 0 0 32px;
+  font-size: 21px;
+  line-height: 1.45;
+}
+
+h2 {
+  margin: 28px 0 25px;
+  color: var(--blue);
+  font-size: 19px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 3.1px;
+  text-transform: uppercase;
+}
+
+.entry {
+  margin: 0 0 18px;
+  break-inside: avoid;
+}
+
+.entry.company-only {
+  margin-bottom: 18px;
+}
+
+.entry-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  column-gap: 26px;
+  align-items: baseline;
+}
+
+.entry-company .entry-main {
+  font-size: 22px;
+  line-height: 1.22;
+  font-weight: 800;
+}
+
+.entry-side {
+  text-align: right;
+  font-size: 20px;
+  line-height: 1.25;
+  font-style: italic;
+}
+
+.entry-role {
+  margin-top: 16px;
+}
+
+.entry-role .entry-main {
+  font-size: 20.5px;
+  line-height: 1.25;
+  font-weight: 800;
+}
+
+.entry-role .entry-side {
+  font-size: 20px;
+}
+
+ul {
+  margin: 13px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  position: relative;
+  margin: 4px 0;
+  padding-left: 24px;
+  font-size: 20.4px;
+  line-height: 1.48;
+}
+
+li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 15px;
+  width: 12px;
+  height: 3px;
+  background: var(--blue);
+}
+
+.skills p {
+  margin: 0 0 10px;
+  font-size: 20.5px;
+}
+
+.skill-pill {
+  display: inline-block;
+  margin: 0 6px 6px 4px;
+  padding: 1px 8px 2px;
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-weight: 800;
+}
+
+.education .entry {
+  margin-bottom: 21px;
+}
+
+.education .entry-role {
+  margin-top: 16px;
+}
+
+.education .entry-role .entry-main {
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.education .entry-side {
+  font-size: 20px;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 25px;
+  margin-top: 26px;
+  padding-top: 17px;
+  border-top: 1px solid var(--rule);
+  font-size: 19.5px;
+}
+
+.footer div {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.footer strong {
+  font-weight: 800;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--blue);
+}
+
+@media screen {
+  body {
+    background: #f5f5f5;
+  }
+
+  .page {
+    margin: 0 auto;
+  }
+}
+</style>
+</head>
+<body class="exact-visual">
+  <main class="page">
+<h1>Kate Miller</h1>
+<p class="summary">An engineering manager building and leading engineering teams at Apple Inc</p>
+<h2>Work Experience</h2>
+<section class="entry">
+<div class="entry-row entry-company"><div class="entry-main">Apple Inc</div><div class="entry-side">Copenhagen</div></div>
+<div class="entry-row entry-role"><div class="entry-main"><strong>Engineering Manager</strong></div><div class="entry-side"><em>Jan 2019 to Present</em></div></div>
+<ul>
+<li>Increased engineering staff&#39;s operating efficiency by providing structure, operating procedures, engineering tools, guidelines, and handbooks.</li>
+<li>Contributed to company-wide engineering initiatives</li>
+<li>Supported the engineering and product teams to achieve a high level of technical quality, reliability, and ease-of-use.</li>
+</ul>
+</section>
+<section class="entry">
+<div class="entry-row entry-company"><div class="entry-main">Backend Engineer, Financial Data</div><div class="entry-side"><em>April 2018 to December 2018</em></div></div>
+<ul>
+<li>Build large-scale (petabyte-size) financial data platform/solution/pipelines using Big Data technologies</li>
+<li>Work cross-functionally with many teams: Engineering, Treasury, Finance, Accounting, etc.</li>
+<li>Work on systems critical to future operation, with impact over billions of dollars of payments volume.</li>
+<li>Deeply understand the plumbing of modern payments and financial technology in many countries.</li>
+</ul>
+</section>
+<section class="entry">
+<div class="entry-row entry-company"><div class="entry-main">Stripe</div><div class="entry-side">San Francisco, CA</div></div>
+<div class="entry-row entry-role"><div class="entry-main"><strong>Full Stack Engineer</strong></div><div class="entry-side"><em>September 2016 to March 2018</em></div></div>
+<ul>
+<li>Responsible for developing, maintaining internal web applications</li>
+<li>Collaborated with technical and business staff in design, development, testing and implementation</li>
+<li>Setup, manage and monitor systems to ensure business continuity</li>
+</ul>
+</section>
+<section class="entry">
+<div class="entry-row entry-company"><div class="entry-main">Bloomberg</div><div class="entry-side">New York, NY</div></div>
+<div class="entry-row entry-role"><div class="entry-main"><strong>Software Engineer Intern</strong></div><div class="entry-side"><em>June 2016 to August 2016</em></div></div>
+<ul>
+<li>Working on Bloomberg&#39;s platform to enhance the user experience</li>
+<li>Proactively participated in the team&#39;s weekly meetings and conducted reports on the project&#39;s progress</li>
+</ul>
+</section>
+<h2>Skills</h2>
+<section class="skills">
+<p>Technical: <span class="skill-pill">Python</span> <span class="skill-pill">Go</span> <span class="skill-pill">Microservices Architecture</span></p>
+<p>Management: <span class="skill-pill">Kanban Methodology</span> <span class="skill-pill">Scrum</span></p>
+<h2>Education</h2>
+<section class="education">
+<section class="entry education-entry">
+<div class="entry-row entry-company"><div class="entry-main">Carnegie Mellon University</div><div class="entry-side"><em>2014-2016</em></div></div>
+<p><strong>Masters of Computer Science</strong>, <em>Pittsburgh, Pennsylvania</em></p>
+</section>
+<section class="entry education-entry">
+<div class="entry-row entry-company"><div class="entry-main">The State University of NY</div><div class="entry-side"><em>2010 - 2014</em></div></div>
+<p><strong>Bachelor of Engineering</strong>, <em>Oswego, New York</em></p>
+</section>
+<section class="footer">
+<div>Email: <strong><a href="mailto:kate@miller.com">kate@miller.com</a></strong></div>
+<div>Mobile: <strong>+123456789</strong></div>
+<div>Github: <strong>@katemiller</strong></div>
+</section>
+  </main>
+</body>
+</html>
