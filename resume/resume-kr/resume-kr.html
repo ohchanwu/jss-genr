@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <title>Resume Updated KR</title>
+  <title>Resume Updated KR (no stats)</title>
   <style>
 :root {
   --ink: #101010;
@@ -20,14 +20,14 @@
      section 72 > entry 64 > entry-edu 54 > subhead 44 > section-body 26 > roleline 20 > line 14 */
   --sp-header: 40px;          /* header-links bar -> name (h1) */
   --sp-h1: 26px;              /* name (h1) -> summary */
-  --sp-section: 58px;         /* above a major section heading (h2) */
+  --sp-section: 64px;         /* above a major section heading (h2) */
   --sp-section-body: 22px;    /* section heading -> its first content */
-  --sp-entry: 74px;           /* between project entries */
-  --sp-entry-edu: 22px;       /* between education entries */
+  --sp-entry: 70px;           /* between project entries */
+  --sp-entry-edu: 28px;       /* between education entries */
   --sp-role: 14px;            /* company line -> role line */
   --sp-roleline: 20px;        /* role line -> first labeled line */
   --sp-line: 14px;            /* between labeled lines */
-  --sp-subhead: 44px;         /* above an h4 sub-heading */
+  --sp-subhead: 58px;         /* above an h4 sub-heading */
   --sp-subhead-body: 8px;     /* h4 sub-heading -> its first labeled line (hugs it) */
   --sp-list-before: 14px;     /* before a bullet list */
   --sp-list-item: 5px;        /* between bullets */
@@ -35,8 +35,8 @@
   --sp-chip-row: 14px;        /* between chip rows */
 
   /* Support columns (스택 / 오픈소스 / 자격증 / 군복무) — own scale */
-  --sp-col-top: 24px;         /* education block -> support columns */
-  --sp-col-section: 46px;     /* above a non-first column heading */
+  --sp-col-top: 38px;         /* education block -> support columns */
+  --sp-col-section: 48px;     /* above a non-first column heading */
   --sp-col-section-body: 15px;/* column heading -> its first content */
   --sp-col-entry: 38px;       /* between credential units in a column */
   --sp-col-line: 13px;        /* stacked lines inside a column (skills rows) */
@@ -426,9 +426,9 @@ a {
 <section class="entry">
 <div class="entry-row entry-company"><div class="entry-main"><a href="https://chaphysicaltherapy.com/">Cha Physical Therapy</a></div><div class="entry-side">웹앱 (미국 NYC 물리치료 클리닉)</div></div>
 <div class="entry-row entry-role"><div class="entry-main"><strong>배포: Docker, AWS, Terraform, Cloudflare | BE: Go | FE: JS, CSS, HTML</strong></div><div class="entry-side"><em>2025 6월 - 현재까지</em></div></div>
-<p class="labeled-line label-운영"><span class="line-label">운영</span><span class="label-body">마케팅팀의 <strong>단독 개발자로 FE·BE·AWS 인프라 전체를 구축·배포·운영</strong>. 광고 효과 측정을 위해 pixel 적용 및 대시보드 구축. EC2 1대에 Docker Compose 컨테이너 3개(Web, DB, Caddy), Cloudflare CDN cache로 레이턴시 N% 감축. DAU 평균 30 / 최대 200이라 비용 최소화를 위해 autoscaling은 미도입</span></p>
+<p class="labeled-line label-운영"><span class="line-label">운영</span><span class="label-body">마케팅팀의 <strong>단독 개발자로 FE·BE·AWS 인프라 전체를 구축·배포·운영</strong>. 광고 효과 측정을 위해 pixel 적용 및 대시보드 구축. EC2 1대에 Docker Compose 컨테이너 3개(Web, DB, Caddy), Cloudflare CDN cache로 레이턴시 감축. DAU 평균 30 / 최대 200이라 비용 최소화를 위해 autoscaling은 미도입</span></p>
 <h4>Squarespace → AWS 마이그레이션</h4>
-<p class="labeled-line label-목적"><span class="line-label">목적</span><span class="label-body">UI 개선, <strong>Stripe 결제 연동(월 평균 N건), 페이지 로드 N% 단축</strong> 구현</span></p>
+<p class="labeled-line label-목적"><span class="line-label">목적</span><span class="label-body">UI 개선, <strong>Stripe 결제 연동, 레이턴시 감축</strong> 구현</span></p>
 <p class="labeled-line label-문제"><span class="line-label">문제</span><span class="label-body">Squarespace SaaS의 UI 커스터마이징 제약과 느린 페이지 응답 속도</span></p>
 <p class="labeled-line label-분석"><span class="line-label">분석</span><span class="label-body">마케팅 팀 설득에는 설명보다 개선된 UI와 속도를 직접 보여주는 방식이 더 효과적이라고 판단</span></p>
 <p class="labeled-line label-해결"><span class="line-label">해결</span><span class="label-body">GitHub Pages 데모로 <strong>AWS 이전을 설득</strong>하고, Go 백엔드와 Docker 배포 구조로 재구축</span></p>
@@ -436,13 +436,13 @@ a {
 <h4>크래시 후 서비스 복구 및 하드닝 (자세한 내용: <a href="https://github.com/ohchanwu/cha-pt-postmortems/blob/main/2026-04-17/2026-04-17.ko.md">사후 보고서</a>)</h4>
 <p class="labeled-line label-문제"><span class="line-label">문제</span><span class="label-body">2026년 4월, AWS EBS gp3 볼륨의 I/O 처리량 한도 초과로 서비스 장애 발생</span></p>
 <p class="labeled-line label-분석"><span class="line-label">분석</span><span class="label-body">데이터 누적과 비효율적인 쿼리, 타임아웃 부재로 디스크 I/O가 급증</span></p>
-<p class="labeled-line label-해결"><span class="line-label">해결</span><span class="label-body"><strong>쿼리 재작성, 인덱스 추가, 타임아웃 설정, 데이터 정리 작업, CloudWatch 모니터링</strong> 적용 → 쿼리 응답 N% 단축, 디스크 I/O N% 감소</span></p>
+<p class="labeled-line label-해결"><span class="line-label">해결</span><span class="label-body"><strong>쿼리 재작성, 인덱스 추가, 타임아웃 설정, 데이터 정리 작업, CloudWatch 모니터링</strong> 적용</span></p>
 <p class="labeled-line label-교훈"><span class="line-label">교훈</span><span class="label-body">DB 최적화와 모니터링은 성능 개선을 넘어 서비스 안정성의 핵심</span></p>
 </section>
 <section class="entry">
 <div class="entry-row entry-company"><div class="entry-main"><a href="https://github.com/ohchanwu/job-scraper">Job Scraper</a></div><div class="entry-side">채용 공고 스크레이퍼, AI 적합성 평가</div></div>
 <div class="entry-row entry-role"><div class="entry-main"><strong>BE: Go | FE: JS, CSS, HTML</strong></div><div class="entry-side"><em>2026 5월 - 현재까지</em></div></div>
-<p class="labeled-line label-목적"><span class="line-label">목적</span><span class="label-body">N개 채용 포털에 흩어진 신입 개발자 <strong>공고를 한곳에 모으고(일 N건 수집), AI 추론으로 사용자별 적합도를 계산</strong></span></p>
+<p class="labeled-line label-목적"><span class="line-label">목적</span><span class="label-body">여러 채용 포털에 흩어진 신입 개발자 <strong>공고를 한곳에 모으고, AI 추론으로 사용자별 적합도를 계산</strong></span></p>
 <p class="labeled-line label-구조"><span class="line-label">구조</span><span class="label-body">1개의 Go 바이너리가 localhost에서 스크랩 결과를 서비스하는 로컬 웹앱</span></p>
 <p class="labeled-line label-추론"><span class="line-label">추론</span><span class="label-body">2단계 구성 — ① 사용자가 설정한 <strong>± 키워드</strong>를 공고와 매칭하는 결정론적 로직을 AI가 보완, ② 사용자의 <strong>단기·장기 목표</strong>를 토대로 점수에 ± 델타를 적용하고 공고에서 근거 문장을 뽑아 제시</span></p>
 </section>
@@ -454,7 +454,7 @@ a {
 <p class="labeled-line label-목적"><span class="line-label">목적</span><span class="label-body">프랑스 건축가 포트폴리오를 <strong>데스크톱, 태블릿, 모바일에서 일관되게 구현</strong></span></p>
 <p class="labeled-line label-문제"><span class="line-label">문제</span><span class="label-body">큰 이미지 용량으로 로딩이 느렸고, 화면 크기별 레이아웃 유지가 필요</span></p>
 <p class="labeled-line label-분석"><span class="line-label">분석</span><span class="label-body">클라이언트가 별도 도메인 비용을 원하지 않아 GitHub Pages 기반 정적 사이트가 적합</span></p>
-<p class="labeled-line label-해결"><span class="line-label">해결</span><span class="label-body"><strong>CSS breakpoint와 JavaScript로 반응형 레이아웃</strong>을 만들고, 이미지는 WebP로 변환해 용량 N% 절감 · 로딩 N% 단축</span></p>
+<p class="labeled-line label-해결"><span class="line-label">해결</span><span class="label-body"><strong>CSS breakpoint와 JavaScript로 반응형 레이아웃</strong>을 만들고, 이미지는 WebP로 변환해 용량 감소</span></p>
 <p class="labeled-line label-교훈"><span class="line-label">교훈</span><span class="label-body">반응형 UI를 직접 구현하며 기본기를 다졌고, 복잡한 화면 상태에는 선언형 프레임워크가 유용하다는 점을 체감</span></p>
 </section>
 <section class="education-section">

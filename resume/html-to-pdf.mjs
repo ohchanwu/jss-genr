@@ -1,6 +1,6 @@
 import path from "node:path";
-import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
+import { RESUMES, launchChrome } from "./resumes.mjs";
 
 // Print-only PDF generator.
 //
@@ -10,30 +10,15 @@ import { fileURLToPath } from "node:url";
 // build-resume-*.mjs scripts, which regenerated HTML from markdown).
 //
 // Usage:
-//   node html-to-pdf.mjs                       # all resume versions (4 KR + EN)
+//   node html-to-pdf.mjs                       # all resume versions (2 KR + EN)
 //   node html-to-pdf.mjs path/to/file.html ... # specific files
 
 const root = path.dirname(fileURLToPath(import.meta.url));
-const require = createRequire(import.meta.url);
-const runtimeNodeModules =
-  "/Users/chanbla11mit/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules";
-const { chromium } = require(path.join(runtimeNodeModules, "playwright"));
 
 const args = process.argv.slice(2);
-const files = args.length
-  ? args
-  : [
-      "resume-kr/resume-kr.html",
-      "resume-kr/resume-kr-nostats.html",
-      "resume-kr/resume-kr-narrative/resume-kr-narrative.html",
-      "resume-kr/resume-kr-narrative/resume-kr-narrative-nostats.html",
-      "resume-en/resume-en.html",
-    ];
+const files = args.length ? args : RESUMES;
 
-const browser = await chromium.launch({
-  headless: true,
-  executablePath: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-});
+const browser = await launchChrome();
 
 for (const rel of files) {
   const htmlPath = path.resolve(root, rel);

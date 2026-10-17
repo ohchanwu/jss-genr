@@ -1,12 +1,16 @@
-NODE := /Users/chanbla11mit/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node
+NODE ?= node
+SITE ?= $(HOME)/mystuff/projects/ohchanwu.dev
 
-KR_HTML := resume-kr/resume-kr.html resume-kr/resume-kr-nostats.html resume-kr/resume-kr-narrative/resume-kr-narrative.html resume-kr/resume-kr-narrative/resume-kr-narrative-nostats.html
+KR_HTML := resume-kr/resume-kr.html resume-kr/resume-kr-narrative/resume-kr-narrative.html
 EN_HTML := resume-en/resume-en.html
 
-.PHONY: pdf pdf-kr pdf-en qa format-example
+.PHONY: setup pdf pdf-kr pdf-en qa sync-site
 
 # Every resume is hand-edited HTML (the source of truth). These targets only
 # print HTML -> PDF via html-to-pdf.mjs; they never regenerate or overwrite HTML.
+setup:
+	npm install --no-audit --no-fund
+
 pdf: pdf-kr pdf-en
 
 pdf-kr:
@@ -18,5 +22,6 @@ pdf-en:
 qa:
 	$(NODE) qa-resume.mjs
 
-format-example:
-	$(NODE) build-format-example.mjs
+# Copy the PDFs the portfolio site serves; the owner reviews and commits there.
+sync-site:
+	python3 ../tools/check-materials.py --sync --site $(SITE)

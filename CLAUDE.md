@@ -11,10 +11,11 @@ owner, a 신입 backend developer, produce Korean IT job-application materials:
 
 ## Privacy boundary
 
-**This repo is pushed publicly.** `profile/`, `companies/`, and `resume/` are
-gitignored and hold personal data. Never copy personal facts into tracked files
-(`CLAUDE.md`, `guides/`, `tools/`, `README.md`, `.claude/`). `resume/` has its
-own nested local git history. Commit there for resume changes; never push it.
+**This repo is pushed publicly.** `profile/` and `companies/` are gitignored and
+hold personal data. Never copy facts from them into tracked files. `resume/` IS
+tracked: the owner's resume is already public on their site. Its
+`resume/resources/` folder (third-party CVs and reference screenshots) stays
+gitignored. Never move files from it into tracked paths.
 
 ## Read first, every session
 
@@ -94,13 +95,21 @@ directly from `profile/` and `strategy.md` (the earlier agent-first mode).
 ## Workflow B: resume (`resume/`)
 
 Read `resume/AGENTS.md` and follow it exactly:
-- Snapshot-commit inside `resume/` before any change or build.
+- Snapshot-commit in this repo before any change or build.
 - The HTML is the source of truth.
 - PDFs come from `make pdf`.
-- Pass the QA gate before reporting success.
+- `make qa` prints the page-fill and margin numbers; visual inspection is still required.
 
-Content rules are in `guides/resume.md`. After the PDFs change, tell the owner
-that the site's copies (`static/resume-*.pdf`) need refreshing; that's Workflow C.
+Content flow mirrors Workflow A:
+1. `resume-en/resume-en.html` is the content master. The owner gives English
+   changes; the agent applies them to the EN HTML.
+2. The agent renders the Korean into both KR files (bullet and narrative),
+   with suggestions and a fact check in a short notes message.
+3. Iterate until the owner approves.
+
+Content rules are in `guides/resume.md`. After the PDFs change, run
+`make sync-site` (it copies them into the site's `static/`), then
+`python3 tools/check-materials.py` for drift and broken links.
 
 ## Workflow C: portfolio site (separate repo)
 

@@ -6,8 +6,10 @@ to one applicant's real experience and each company's posting and 인재상.
 
 - `CLAUDE.md` / `AGENTS.md`: agent rules and workflows
 - `guides/`: writing, resume, portfolio, review rubric, company template, profile format
+- `resume/`: resume HTML sources, PDF build, layout QA
 - `tools/charcount.py`: 글자수 counter (공백 포함/제외, CRLF worst case, bytes)
+- `tools/check-materials.py`: resume↔site PDF drift and broken-link check
 - `.claude/agents/jss-reviewer.md`: reviewer subagent
 
-Personal data (`profile/`, `companies/`, `resume/`) is gitignored. To reuse the
+Personal data (`profile/`, `companies/`) is gitignored. To reuse the
 harness, create your own `profile/` following `guides/profile-format.md`.

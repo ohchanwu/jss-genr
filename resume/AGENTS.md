@@ -36,11 +36,14 @@ The self-contained HTML files are the **single source of truth** — edit them
 directly (inline `<style>`, no separate CSS or Markdown). PDFs are produced
 **from** the HTML, never the other way around.
 
-Resume HTML files:
+Resume HTML files (listed once in `resumes.mjs`):
 
-- KR bullet: `resume-kr/resume-kr.html` (+ `resume-kr-nostats.html`)
-- KR narrative: `resume-kr/resume-kr-narrative/resume-kr-narrative.html` (+ `…-nostats.html`)
-- EN: `resume-en/resume-en.html`
+- EN (content master): `resume-en/resume-en.html`
+- KR bullet: `resume-kr/resume-kr.html`
+- KR narrative: `resume-kr/resume-kr-narrative/resume-kr-narrative.html`
+
+The former `-nostats` variants were merged on 2026-10-17. Only real numbers are
+allowed, so a stats/no-stats split no longer exists.
 
 The old Markdown→HTML build (`resume-en.md`, the `*.css` sources, and the
 `build-resume*.mjs` scripts) has been retired to `archive/`; it regenerated the
@@ -53,10 +56,16 @@ so prefer generating and reviewing PDFs unless an application requires `.docx`.
 `html-to-pdf.mjs` loads each HTML file and prints it to `<name>.pdf` (1200×1611,
 print backgrounds on). It never reads Markdown and never writes HTML.
 
+0. First time only: `make setup` (installs `playwright-core`, which drives the
+   installed Google Chrome; no browser download).
 1. Edit the HTML directly.
-2. Commit (snapshot) before regenerating.
+2. Commit (snapshot) before regenerating. This folder is part of the jss-genr
+   repo, so snapshot there.
 3. `make pdf` — all resumes (or `make pdf-kr` / `make pdf-en`), equivalently
    `node html-to-pdf.mjs [file.html ...]`.
+4. `make sync-site` copies the KR bullet and EN PDFs into the portfolio site's
+   `static/` (review and commit them in the site repo). From the repo root,
+   `python3 tools/check-materials.py` reports PDF drift and broken links.
 
 Never hand-edit the generated `.pdf` files.
 
@@ -65,7 +74,7 @@ Never hand-edit the generated `.pdf` files.
 - Keep resume content concise, recruiter-readable, and suitable for Korean big-tech applications.
 - Prefer ATS-friendly layout choices: simple headings, plain text links, clear dates, and no information that depends on decorative graphics.
 - Use the format style shown in `format_example.webp` as the visual reference for the English resume: large bold name, short summary line, blue uppercase section labels, right-aligned italic dates/locations, blue dash bullets, and a simple contact footer.
-- Do not push from this repository. Local commits are fine at meaningful checkpoints.
+- Do not push. Local commits are fine at meaningful checkpoints.
 
 ## Markdown/HTML/CSS resume QA gate
 
@@ -75,7 +84,12 @@ For every resume change:
 
 1. Regenerate the PDF from the HTML with `html-to-pdf.mjs` (`make pdf`).
 2. Render every generated PDF page to images with `pdftoppm` or an equivalent PDF-to-image renderer.
-3. Run `make qa` to check the generated HTML in headless Chrome for console errors, failed local requests, and horizontal overflow.
+3. Run `make qa`. In print media it checks console errors, failed local
+   requests, and horizontal overflow, and it computes the step 5 measurements
+   (`contentBoxBottom`, `lowestVisibleContent`, `remainingContentSpace`) and
+   margin violations for every page. It exits non-zero on any problem. Report its
+   numbers instead of measuring by hand. The visual inspection below is still
+   required.
 4. Visually inspect every rendered page before reporting success. This inspection must judge the PDF as a finished resume, not merely as a rendered artifact. Check specifically for:
    - cramped vertical spacing
    - overlapping or nearly touching lines

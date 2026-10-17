@@ -1,29 +1,18 @@
 import path from "node:path";
-import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
+import { RESUMES, launchChrome } from "./resumes.mjs";
+
+// Technical QA for the resume HTML: console errors, failed requests, horizontal
+// overflow, and the AGENTS.md page-fill/margin measurements per .page.
+// Visual composition inspection of the rendered PDFs is still required.
 
 const root = path.dirname(fileURLToPath(import.meta.url));
-const require = createRequire(import.meta.url);
-const runtimeNodeModules = "/Users/chanbla11mit/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules";
-const { chromium } = require(path.join(runtimeNodeModules, "playwright"));
-
-const htmlPaths = [
-  path.join(root, "resume-en", "resume-en.html"),
-  path.join(root, "resume-kr", "resume-kr.html"),
-  path.join(root, "resume-kr", "resume-kr-nostats.html"),
-  path.join(root, "resume-kr", "resume-kr-narrative", "resume-kr-narrative.html"),
-  path.join(root, "resume-kr", "resume-kr-narrative", "resume-kr-narrative-nostats.html"),
-];
-
-const browser = await chromium.launch({
-  headless: true,
-  executablePath: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-});
-
+const browser = await launchChrome();
 const results = [];
 let hasFailure = false;
 
-for (const htmlPath of htmlPaths) {
+for (const rel of RESUMES) {
+  const htmlPath = path.join(root, rel);
   const consoleMessages = [];
   const failedRequests = [];
   const page = await browser.newPage({ viewport: { width: 1200, height: 1611 }, deviceScaleFactor: 1 });
@@ -31,45 +20,80 @@ for (const htmlPath of htmlPaths) {
   page.on("requestfailed", (request) => failedRequests.push(`${request.method()} ${request.url()} ${request.failure()?.errorText ?? ""}`));
 
   await page.goto(`file://${htmlPath}`, { waitUntil: "networkidle" });
+  // Measure in print media, the mode html-to-pdf.mjs renders with.
+  await page.emulateMedia({ media: "print" });
 
   const checks = await page.evaluate(() => {
-    const body = document.body;
     const documentElement = document.documentElement;
+    const pages = [...document.querySelectorAll(".page")];
+
+    // Lowest/rightmost visible content: text runs plus images, SVGs, and rules.
+    const contentRects = (pageEl) => {
+      const rects = [];
+      const walker = document.createTreeWalker(pageEl, NodeFilter.SHOW_TEXT);
+      const range = document.createRange();
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        if (!node.textContent.trim()) continue;
+        const style = getComputedStyle(node.parentElement);
+        if (style.visibility === "hidden" || style.display === "none") continue;
+        range.selectNodeContents(node);
+        for (const r of range.getClientRects()) if (r.width && r.height) rects.push(r);
+      }
+      for (const el of pageEl.querySelectorAll("img, svg, hr")) {
+        const r = el.getBoundingClientRect();
+        if (r.width && r.height) rects.push(r);
+      }
+      return rects;
+    };
+
+    const pageReports = pages.map((pageEl, index) => {
+      const box = pageEl.getBoundingClientRect();
+      const style = getComputedStyle(pageEl);
+      const pad = (side) => parseFloat(style[`padding${side}`]) || 0;
+      const rects = contentRects(pageEl);
+      const lowest = Math.max(...rects.map((r) => r.bottom - box.top));
+      const rightmost = Math.max(...rects.map((r) => r.right - box.left));
+      const contentBoxBottom = box.height - pad("Bottom");
+      const contentBoxRight = box.width - pad("Right");
+      const sample = pageEl.querySelector("li, p");
+      const lineHeight = sample ? parseFloat(getComputedStyle(sample).lineHeight) || 24 : 24;
+      const remaining = contentBoxBottom - lowest;
+      const isLast = index === pages.length - 1;
+      const problems = [];
+      if (lowest > contentBoxBottom + 0.5) problems.push(`bottom margin violated by ${(lowest - contentBoxBottom).toFixed(1)}px`);
+      if (rightmost > contentBoxRight + 0.5) problems.push(`right margin violated by ${(rightmost - contentBoxRight).toFixed(1)}px`);
+      if (!isLast && remaining > Math.min(lineHeight, 50)) problems.push(`underfilled: ${remaining.toFixed(1)}px left (limit ${Math.min(lineHeight, 50).toFixed(1)}px)`);
+      return {
+        page: index + 1,
+        isLast,
+        contentBoxBottom: Math.round(contentBoxBottom),
+        lowestVisibleContent: Math.round(lowest),
+        remainingContentSpace: Math.round(remaining),
+        problems,
+      };
+    });
+
     return {
       title: document.title,
       horizontalOverflow: documentElement.scrollWidth > window.innerWidth + 2,
-      scrollWidth: documentElement.scrollWidth,
-      viewportWidth: window.innerWidth,
-      bodyHeight: body.getBoundingClientRect().height,
-      pageCount: document.querySelectorAll(".page").length,
-      entryCount: document.querySelectorAll(".entry").length,
-      sectionCount: document.querySelectorAll("h2").length,
-      footerItems: document.querySelectorAll(".footer div").length,
+      pageCount: pages.length,
+      pages: pageReports,
     };
   });
 
-  const slug = path.basename(htmlPath, ".html");
-  const screenshotPath = `/tmp/${slug}-html.png`;
+  await page.emulateMedia({ media: "screen" });
+  const screenshotPath = `/tmp/${path.basename(htmlPath, ".html")}-html.png`;
   await page.screenshot({ path: screenshotPath, fullPage: true });
   await page.close();
 
-  const result = {
-    file: path.relative(root, htmlPath),
-    ...checks,
-    consoleMessages,
-    failedRequests,
-    screenshotPath,
-  };
-  results.push(result);
-
-  if (checks.horizontalOverflow || consoleMessages.length || failedRequests.length) {
+  const pageProblems = checks.pages.flatMap((p) => p.problems.map((msg) => `page ${p.page}: ${msg}`));
+  results.push({ file: rel, ...checks, consoleMessages, failedRequests, screenshotPath });
+  if (checks.horizontalOverflow || consoleMessages.length || failedRequests.length || pageProblems.length) {
     hasFailure = true;
   }
 }
 await browser.close();
 
 console.log(JSON.stringify(results, null, 2));
-
-if (hasFailure) {
-  process.exitCode = 1;
-}
+if (hasFailure) process.exitCode = 1;

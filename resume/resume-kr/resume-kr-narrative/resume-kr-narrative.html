@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <title>Resume KR (Narrative)</title>
+  <title>Resume KR (Narrative, no stats)</title>
   <style>
 :root {
   --ink: #101010;
@@ -23,7 +23,7 @@
   --sp-section: 78px;         /* above a major section heading (h2) */
   --sp-section-body: 30px;    /* section heading -> its first content */
   --sp-entry: 76px;           /* between project entries */
-  --sp-entry-edu: 40px;       /* between education entries */
+  --sp-entry-edu: 50px;       /* between education entries */
   --sp-line: 16px;            /* adjacent lines inside one entry (company / role / paragraph) */
   --sp-subhead: 62px;         /* above an h4 sub-heading */
   --sp-subhead-body: 7px;     /* h4 sub-heading -> its paragraph (hugs it) */
@@ -33,8 +33,8 @@
   --sp-chip-row: 14px;        /* between chip rows */
 
   /* Support columns (스택 / 오픈소스 / 자격증 / 군복무) — own scale */
-  --sp-col-top: 50px;         /* education block -> support columns */
-  --sp-col-section: 50px;     /* above a non-first column heading */
+  --sp-col-top: 62px;         /* education block -> support columns */
+  --sp-col-section: 54px;     /* above a non-first column heading */
   --sp-col-section-body: 16px;/* column heading -> its first content */
   --sp-col-entry: 36px;       /* between credential units in a column */
   --sp-col-line: 12px;        /* stacked lines inside a column (skills rows) */
@@ -386,23 +386,23 @@ a {
 <section class="entry">
 <div class="entry-row entry-company"><div class="entry-main"><a href="https://chaphysicaltherapy.com/">Cha Physical Therapy</a></div><div class="entry-side">웹앱 (미국 NYC 물리치료 클리닉)</div></div>
 <div class="entry-row entry-role"><div class="entry-main">배포: Docker, AWS, Terraform, Cloudflare | BE: Go | FE: JS, CSS, HTML</div><div class="entry-side"><em>2025 6월 - 현재까지</em></div></div>
-<p>미국 물리치료 클리닉 마케팅팀의 단독 개발자로서 웹사이트의 FE, BE, AWS 인프라 전체를 혼자서 구축, 배포, 운영하고있습니다. 광고 효과를 파악하기 위해 pixel 적용하고 대시보드도 구축했습니다. 현재는 1개의 EC2 인스턴스에 Docker Compose 컨테이너 3개 (Web, DB, Caddy)로 구성됐으며, Cloudflare CDN cache 적용해 레이턴시를 N% 감축했습니다. DAU가 평균 30, 최대 200이므로 비용 최소화를 위해 autoscaling은 도입 안 했습니다.</p>
+<p>미국 물리치료 클리닉 마케팅팀의 단독 개발자로서 웹사이트의 FE, BE, AWS 인프라 전체를 혼자서 구축, 배포, 운영하고있습니다. 광고 효과를 파악하기 위해 pixel 적용하고 대시보드도 구축했습니다. 현재는 1개의 EC2 인스턴스에 Docker Compose 컨테이너 3개 (Web, DB, Caddy)로 구성됐으며, Cloudflare CDN cache 적용해 레이턴시를 감축했습니다. DAU가 평균 30, 최대 200이므로 비용 최소화를 위해 autoscaling은 도입 안 했습니다.</p>
 <h4>Squarespace → AWS 마이그레이션</h4>
-<p>Squarespace 기반 클리닉 웹사이트를 AWS 기반 웹앱으로 이전해 UI 개선, Stripe 결제 연동(현재 월 평균 N건 처리), 페이지 로드 시간 N% 단축을 구현했습니다. 기존 SaaS 환경은 UI 커스터마이징과 성능 개선에 제약이 있었고, 마케팅 팀을 설득하기 위해 GitHub Pages 데모로 개선된 UI와 속도를 직접 보여줬습니다. 이후 <strong>Go 백엔드와 Docker 배포 구조</strong>로 웹앱을 재구축하며, 마이그레이션 설득에는 작동하는 프로토타입이 가장 효과적이라는 점을 배웠습니다.</p>
+<p>Squarespace 기반 클리닉 웹사이트를 AWS 기반 웹앱으로 이전해 UI 개선, Stripe 결제 연동, 레이턴시 감축을 구현했습니다. 기존 SaaS 환경은 UI 커스터마이징과 성능 개선에 제약이 있었고, 마케팅 팀을 설득하기 위해 GitHub Pages 데모로 개선된 UI와 속도를 직접 보여줬습니다. 이후 <strong>Go 백엔드와 Docker 배포 구조</strong>로 웹앱을 재구축하며, 마이그레이션 설득에는 작동하는 프로토타입이 가장 효과적이라는 점을 배웠습니다.</p>
 <h4>크래시 후 서비스 복구 및 하드닝</h4>
-<p>2026년 4월, AWS EBS gp3 볼륨의 I/O 처리량 한도 초과로 서비스 장애가 발생했습니다. 원인은 데이터 누적, 비효율적인 쿼리, 타임아웃 부재로 인한 디스크 I/O 급증이었습니다. 새 EBS 볼륨으로 서비스를 복구한 뒤 <strong>쿼리 재작성, 인덱스 추가, 타임아웃 설정, 데이터 정리 작업, CloudWatch 모니터링</strong>을 적용해 쿼리 응답 시간을 N% 단축하고 디스크 I/O를 N% 감소시켜 재발 가능성을 낮췄고, 자세한 내용은 <a href="https://github.com/ohchanwu/cha-pt-postmortems/blob/main/2026-04-17/2026-04-17.ko.md">사후 보고서</a>에 정리했습니다.</p>
+<p>2026년 4월, AWS EBS gp3 볼륨의 I/O 처리량 한도 초과로 서비스 장애가 발생했습니다. 원인은 데이터 누적, 비효율적인 쿼리, 타임아웃 부재로 인한 디스크 I/O 급증이었습니다. 새 EBS 볼륨으로 서비스를 복구한 뒤 <strong>쿼리 재작성, 인덱스 추가, 타임아웃 설정, 데이터 정리 작업, CloudWatch 모니터링</strong>을 적용해 재발 가능성을 낮췄고, 자세한 내용은 <a href="https://github.com/ohchanwu/cha-pt-postmortems/blob/main/2026-04-17/2026-04-17.ko.md">사후 보고서</a>에 정리했습니다.</p>
 </section>
 <section class="entry">
 <div class="entry-row entry-company"><div class="entry-main"><a href="https://github.com/ohchanwu/job-scraper">Job Scraper</a></div><div class="entry-side">채용 공고 스크레이퍼, AI 활용 적합성 평가</div></div>
 <div class="entry-row entry-role"><div class="entry-main"><strong>BE: Go | FE: JS, CSS, HTML</strong></div><div class="entry-side"><em>2026 5월 - 현재까지</em></div></div>
-<p>N개 채용 포털에 흩어진 신입 개발자 공고를 한곳에 모으고(일 평균 N건 수집), 키워드 매칭과 AI 추론으로 사용자별 적합도를 계산하는 앱을 만들고 있습니다. 현재는 1개의 Go 바이너리가 localhost에 스크랩 내용을 서비스하는 로컬 웹앱입니다. AI 추론은 2단계로 이루어지며, 첫 단계는 사용자가 설정한 ± 키워드를 공고랑 매칭하는 결정론적 Go 로직을 보완하는 단계입니다. 2번째 단계는 사용자가 서술한 단기 및 장기 목표를 토대로 이미 계산된 점수에 ± 델타를 적용하고, 공고에 특정 문장을 뽑아 델타 근거로 UI에 제시합니다.</p>
+<p>여러 채용 포털에 흩어진 신입 개발자 공고를 한곳에 모으고, 키워드 매칭과 AI 추론으로 사용자별 적합도를 계산하는 앱을 만들고 있습니다. 현재는 1개의 Go 바이너리가 localhost에 스크랩 내용을 서비스하는 로컬 웹앱입니다. AI 추론은 2단계로 이루어지며, 첫 단계는 사용자가 설정한 ± 키워드를 공고랑 매칭하는 결정론적 Go 로직을 보완하는 단계입니다. 2번째 단계는 사용자가 서술한 단기 및 장기 목표를 토대로 이미 계산된 점수에 ± 델타를 적용하고, 공고에 특정 문장을 뽑아 델타 근거로 UI에 제시합니다.</p>
 </section>
 </main>
 <main class="page project-page">
 <section class="entry">
 <div class="entry-row entry-company"><div class="entry-main"><a href="https://ohchanwu.github.io/alix-chaput-architecture/">Alix Chaput Architecture</a></div><div class="entry-side">웹앱 (프랑스 건축가 포트폴리오)</div></div>
 <div class="entry-row entry-role"><div class="entry-main"><strong>배포: GitHub Pages | FE: JS, CSS, HTML</strong></div><div class="entry-side"><em>2025 5월 - 2025 7월</em></div></div>
-<p>프랑스 건축가 포트폴리오 사이트를 데스크톱, 태블릿, 모바일에서 일관되게 보이도록 구현했습니다. 큰 이미지 용량으로 로딩이 느렸고, 화면 크기별 레이아웃 유지가 필요했기 때문에 <strong>CSS breakpoint와 JavaScript로 반응형 레이아웃</strong>을 만들고 이미지를 WebP로 변환해 용량을 N% 절감하고 초기 로딩 시간을 N% 단축했습니다. GitHub Pages에 배포해 별도 도메인 비용 없이 운영했고, 이 과정에서 복잡한 화면 상태에는 React 같은 선언형 프레임워크가 유용하다는 점을 체감했습니다.</p>
+<p>프랑스 건축가 포트폴리오 사이트를 데스크톱, 태블릿, 모바일에서 일관되게 보이도록 구현했습니다. 큰 이미지 용량으로 로딩이 느렸고, 화면 크기별 레이아웃 유지가 필요했기 때문에 <strong>CSS breakpoint와 JavaScript로 반응형 레이아웃</strong>을 만들고 이미지를 WebP로 변환했습니다. GitHub Pages에 배포해 별도 도메인 비용 없이 운영했고, 이 과정에서 복잡한 화면 상태에는 React 같은 선언형 프레임워크가 유용하다는 점을 체감했습니다.</p>
 </section>
 <section class="education-section">
 <h2>교육</h2>

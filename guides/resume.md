@@ -26,8 +26,8 @@ The evidence for these rules is in `profile/sources/advice-digest.md`.
     in a sent resume.
 
 ## Versions
-- KR bullet and KR narrative (서술형), each with and without stats, plus EN.
-  The narrative version comes first; bullets are derived from it.
+- EN (content master), KR narrative (서술형), and KR bullet. Three files in
+  total; the stats/no-stats split was retired on 2026-10-17.
 - Default output is PDF.
 
 ## Before sending
