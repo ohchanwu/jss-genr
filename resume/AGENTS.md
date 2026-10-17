@@ -87,7 +87,10 @@ For every resume change:
 3. Run `make qa`. In print media it checks console errors, failed local
    requests, and horizontal overflow, and it computes the step 5 measurements
    (`contentBoxBottom`, `lowestVisibleContent`, `remainingContentSpace`) and
-   margin violations for every page. It exits non-zero on any problem. Report its
+   margin violations for every page. It exits non-zero on any problem, and each
+   problem says how many px to add or remove. It also warns about orphaned last
+   lines (one or two words). `node qa-resume.mjs --lines [file.html]` prints the
+   wrapped line count of every text block, to find which lines to trim. Report its
    numbers instead of measuring by hand. The visual inspection below is still
    required.
 4. Visually inspect every rendered page before reporting success. This inspection must judge the PDF as a finished resume, not merely as a rendered artifact. Check specifically for:
