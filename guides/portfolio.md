@@ -13,7 +13,7 @@ repo's own `CLAUDE.md` governs code and process there: local commits on
 
 ## Publication filter (stricter than the resume: the site is public and indexed)
 Never publish:
-- phone number, home address, date of birth, or government IDs
+- home address, date of birth, or government IDs (the owner's contact details on the resume PDFs are intentionally public)
 - client staff names or internal details that the client hasn't made public
 - PHI or billing data
 - anything from `profile/sensitive.md`
